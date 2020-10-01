@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "charactercreation.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
+    connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
 }
 
 MainWindow::~MainWindow()
@@ -17,9 +17,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::openCharacterCreation()
 {
+    //Close Menu
     ui->menuWidget->hide();
-    CharacterCreation* charCreate = new CharacterCreation(ui->centralwidget);
-    ui->viewport->insertWidget(0,charCreate,Qt::AlignHCenter);
-    charCreate->show();
-}
 
+    //Open Character creation
+    charCreateUI = new CharacterCreation(ui->centralwidget);
+
+    ui->viewport->insertWidget(0,charCreateUI,Qt::AlignHCenter);
+    charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
+    charCreateUI->show();
+
+    //Show menu again if closed
+    connect(charCreateUI,&QWidget::destroyed,this,[=](){ ui->menuWidget->show(); });
+}

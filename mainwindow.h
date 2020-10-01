@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <charactercreation.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,8 +23,9 @@ private slots:
 
 
 private:
-    Ui::MainWindow *ui;
 
+    Ui::MainWindow *ui;
+    CharacterCreation* charCreateUI;
 
 };
 #endif // MAINWINDOW_H

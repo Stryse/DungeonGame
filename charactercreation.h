@@ -15,6 +15,7 @@ class CharacterCreation : public QWidget
     Q_OBJECT
 public:
     explicit CharacterCreation(QWidget *parent = nullptr);
+    ~CharacterCreation();
 
 signals:
 
