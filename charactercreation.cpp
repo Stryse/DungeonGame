@@ -13,8 +13,8 @@ CharacterCreation::CharacterCreation(QWidget *parent)
 
 CharacterCreation::~CharacterCreation()
 {
+    qDebug() << "Character creation window closed and deallocated";
     delete ui;
-    qDebug() << "Character creation window closed and deallocated\n";
 }
 
 void CharacterCreation::paintEvent(QPaintEvent *)

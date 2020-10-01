@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , charCreateUI(nullptr)
 {
     ui->setupUi(this);
     connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete charCreateUI;
     delete ui;
 }
 
@@ -21,12 +23,18 @@ void MainWindow::openCharacterCreation()
     ui->menuWidget->hide();
 
     //Open Character creation
-    charCreateUI = new CharacterCreation(ui->centralwidget);
+    charCreateUI = new CharacterCreation(this);
 
     ui->viewport->insertWidget(0,charCreateUI,Qt::AlignHCenter);
     charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
     charCreateUI->show();
 
     //Show menu again if closed
-    connect(charCreateUI,&QWidget::destroyed,this,[=](){ ui->menuWidget->show(); });
+    connect(charCreateUI,&QWidget::destroyed,this,&MainWindow::showMenu);
+}
+
+void MainWindow::showMenu()
+{
+    charCreateUI = nullptr;
+    ui->menuWidget->show();
 }

@@ -13,15 +13,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    //CTOR
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-signals:
+      signals:
 
 private slots:
     void openCharacterCreation();
-
-
+    void showMenu();
 private:
 
     Ui::MainWindow *ui;
