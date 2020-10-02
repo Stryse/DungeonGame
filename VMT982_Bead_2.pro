@@ -10,15 +10,18 @@ CONFIG += c++11
 
 SOURCES += \
     charactercreation.cpp \
+    gamefieldui.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     charactercreation.h \
+    gamefieldui.h \
     mainwindow.h
 
 FORMS += \
     character_creation.ui \
+    gamefieldui.ui \
     mainwindow.ui
 
 # Default rules for deployment.
