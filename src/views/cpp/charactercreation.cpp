@@ -9,6 +9,7 @@ CharacterCreation::CharacterCreation(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->cancelBtn,&QPushButton::clicked,this,&QWidget::close);
+    qDebug() << "Character creation opened";
 }
 
 CharacterCreation::~CharacterCreation()

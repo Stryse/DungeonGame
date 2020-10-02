@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/img/brick_background.png</file>
-        <file>resources/img/char_creat_background.jpg</file>
+        <file>resources/img/backgrounds/brick_background.png</file>
+        <file>resources/img/backgrounds/char_creat_background.jpg</file>
     </qresource>
 </RCC>

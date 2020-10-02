@@ -24,7 +24,13 @@ FORMS += \
     src/views/ui/gamefieldui.ui \
     src/views/ui/mainwindow.ui
 
-UI_DIR = $$PWD\src\views\ui\
+UI_DIR = $$PWD/src/views/header/generated
+
+INCLUDEPATH += \
+    src/views/header \
+    src/views/header/generated \
+    src/models/header \
+    src/persistence/header
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -32,7 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resource.qrc \
     resource.qrc
 
 DISTFILES += \

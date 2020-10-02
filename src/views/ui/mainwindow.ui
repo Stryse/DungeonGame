@@ -34,7 +34,8 @@
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">QWidget#centralwidget{
-	background-image: url(:/resources/img/brick_background.png);
+	
+	background-image: url(:/resources/img/backgrounds/brick_background.png);
 }</string>
    </property>
    <layout class="QVBoxLayout" name="viewport" stretch="10">

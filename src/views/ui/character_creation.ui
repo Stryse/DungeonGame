@@ -18,7 +18,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget#char_create_widget{
-background-image:  url(:/resources/img/char_creat_background.jpg);
+background-image:  url(:/resources/img/backgrounds/char_creat_background.jpg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
