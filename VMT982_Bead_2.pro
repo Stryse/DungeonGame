@@ -9,20 +9,22 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    charactercreation.cpp \
-    gamefieldui.cpp \
-    main.cpp \
-    mainwindow.cpp
+    src/main.cpp \
+    src/views/cpp/charactercreation.cpp \
+    src/views/cpp/gamefieldui.cpp \
+    src/views/cpp/mainwindow.cpp
 
 HEADERS += \
-    charactercreation.h \
-    gamefieldui.h \
-    mainwindow.h
+    src/views/header/charactercreation.h \
+    src/views/header/gamefieldui.h \
+    src/views/header/mainwindow.h
 
 FORMS += \
-    character_creation.ui \
-    gamefieldui.ui \
-    mainwindow.ui
+    src/views/ui/character_creation.ui \
+    src/views/ui/gamefieldui.ui \
+    src/views/ui/mainwindow.ui
+
+UI_DIR = $$PWD\src\views\ui\
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -30,4 +32,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    resource.qrc \
     resource.qrc
+
+DISTFILES += \
+    .gitignore \
+    resources/img/backgrounds/brick_background.png \
+    resources/img/backgrounds/char_creat_background.jpg
