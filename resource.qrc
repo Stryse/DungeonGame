@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>resources/img/backgrounds/brick_background.png</file>
         <file>resources/img/backgrounds/char_creat_background.jpg</file>
+        <file>resources/img/player/amonguscyan.png</file>
     </qresource>
 </RCC>

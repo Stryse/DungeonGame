@@ -141,7 +141,7 @@ color: #dfdfdf;
           </widget>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-          <widget class="QWidget" name="playerPortraitWidget" native="true">
+          <widget class="PaintedWidget" name="playerPortraitWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>150</width>
@@ -590,6 +590,14 @@ border-radius: 20px;
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PaintedWidget</class>
+   <extends>QWidget</extends>
+   <header>paintedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <buttongroups>

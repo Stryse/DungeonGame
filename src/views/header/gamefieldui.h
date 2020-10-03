@@ -3,15 +3,12 @@
 
 #include <QWidget>
 #include <QMap>
+#include "gamelogicmodel.h"
+
 
 namespace Ui {
 class GameFieldUI;
 }
-
-// TYPEDEFS
-using KeyFunction = void (*(Qt::Key));
-
-class GameModel; // TODO: remove forward declaration
 
 class GameFieldUI : public QWidget
 {
@@ -28,8 +25,10 @@ protected:
     void keyPressEvent(QKeyEvent* event);
 
 private:
+    //FIELDS
     Ui::GameFieldUI *ui;
-    GameModel* game;
+    GameLogicModel* game;
+
 };
 
 #endif // GAMEFIELDUI_H
