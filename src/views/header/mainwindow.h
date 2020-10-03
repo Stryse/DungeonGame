@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "charactercreation.h"
+#include "gamefieldui.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,11 +21,13 @@ public:
       signals:
 
 private slots:
+    void openNewGame();
     void openCharacterCreation();
     void showMenu();
 private:
 
     Ui::MainWindow *ui;
+    GameFieldUI* gameUI;
     CharacterCreation* charCreateUI;
 
 };

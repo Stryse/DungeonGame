@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , charCreateUI(nullptr)
 {
     ui->setupUi(this);
+    connect(ui->newgameBtn,&QPushButton::clicked,this,&MainWindow::openNewGame);
     connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
     connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
 }
@@ -17,6 +18,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::openNewGame()
+{
+    //Close Menu
+    ui->menuWidget->hide();
+
+    //Open Character creation
+    gameUI = new GameFieldUI(this);
+    gameUI->setAttribute(Qt::WA_DeleteOnClose);
+
+    ui->viewport->insertWidget(0,gameUI,Qt::AlignHCenter);
+    gameUI->show();
+
+    //Show menu again if closed
+    connect(gameUI,&QWidget::destroyed,this,&MainWindow::showMenu);
+}
+
 void MainWindow::openCharacterCreation()
 {
     //Close Menu
@@ -24,9 +41,9 @@ void MainWindow::openCharacterCreation()
 
     //Open Character creation
     charCreateUI = new CharacterCreation(this);
+    charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
 
     ui->viewport->insertWidget(0,charCreateUI,Qt::AlignHCenter);
-    charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
     charCreateUI->show();
 
     //Show menu again if closed
