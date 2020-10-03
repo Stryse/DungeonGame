@@ -31,17 +31,13 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="viewportWidget">
    <property name="styleSheet">
-    <string notr="true">QWidget#centralwidget{
-	
+    <string notr="true">QWidget#viewportWidget{	
 	background-image: url(:/resources/img/backgrounds/brick_background.png);
 }</string>
    </property>
-   <layout class="QVBoxLayout" name="viewport" stretch="10">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <layout class="QGridLayout" name="viewPortLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -54,14 +50,55 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item alignment="Qt::AlignHCenter">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="1">
+     <spacer name="topSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="0">
+     <spacer name="leftSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
      <widget class="QWidget" name="menuWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>600</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="menuVLayout">
        <property name="spacing">
         <number>30</number>
        </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <property name="topMargin">
-        <number>10</number>
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>40</number>
@@ -275,6 +312,32 @@ border-radius: 20px;
        </item>
       </layout>
      </widget>
+    </item>
+    <item row="1" column="2">
+     <spacer name="rightSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="1">
+     <spacer name="bottomSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

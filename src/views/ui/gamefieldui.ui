@@ -34,13 +34,24 @@
    </property>
    <item>
     <widget class="QWidget" name="gameFieldContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>720</width>
+       <height>720</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>720</width>
        <height>720</height>
       </size>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="styleSheet">
+      <string notr="true">#gameFieldContainer{
+background-color: #ffffff;
+}</string>
+     </property>
+     <layout class="QGridLayout" name="gameFieldGrid">
       <property name="leftMargin">
        <number>0</number>
       </property>
@@ -119,6 +130,11 @@ border: 2px solid black;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">#playerNameLabel{
+color: #dfdfdf;
+}</string>
+           </property>
            <property name="text">
             <string>PlayerName</string>
            </property>
@@ -151,13 +167,18 @@ border-radius: 10px;
        </widget>
       </item>
       <item alignment="Qt::AlignBottom">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="mapNameLabel">
         <property name="font">
          <font>
           <pointsize>16</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#mapNameLabel{
+color: #dfdfdf;
+}</string>
         </property>
         <property name="text">
          <string>Map Name</string>

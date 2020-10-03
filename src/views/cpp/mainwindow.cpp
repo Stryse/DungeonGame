@@ -15,43 +15,42 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete charCreateUI;
+    delete gameUI;
     delete ui;
 }
 
 void MainWindow::openNewGame()
 {
-    //Close Menu
-    ui->menuWidget->hide();
-
     //Open Character creation
     gameUI = new GameFieldUI(this);
     gameUI->setAttribute(Qt::WA_DeleteOnClose);
-
-    ui->viewport->insertWidget(0,gameUI,Qt::AlignHCenter);
-    gameUI->show();
-
-    //Show menu again if closed
-    connect(gameUI,&QWidget::destroyed,this,&MainWindow::showMenu);
+    updateViewPort(gameUI);
 }
 
 void MainWindow::openCharacterCreation()
 {
-    //Close Menu
-    ui->menuWidget->hide();
-
     //Open Character creation
     charCreateUI = new CharacterCreation(this);
     charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
-
-    ui->viewport->insertWidget(0,charCreateUI,Qt::AlignHCenter);
-    charCreateUI->show();
-
-    //Show menu again if closed
-    connect(charCreateUI,&QWidget::destroyed,this,&MainWindow::showMenu);
+    updateViewPort(charCreateUI);
 }
 
 void MainWindow::showMenu()
 {
     charCreateUI = nullptr;
+    gameUI = nullptr;
     ui->menuWidget->show();
+}
+
+void MainWindow::updateViewPort(QWidget *w)
+{
+    //Close Menu
+    ui->menuWidget->hide();
+
+    //Add Widget
+    ui->viewPortLayout->addWidget(w,1,1,Qt::AlignCenter);
+
+    // Back to menu if destroyed
+    connect(w,&QWidget::destroyed,this,&MainWindow::showMenu);
+    w->show();
 }

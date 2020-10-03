@@ -24,6 +24,7 @@ private slots:
     void openNewGame();
     void openCharacterCreation();
     void showMenu();
+    void updateViewPort(QWidget* w);
 private:
 
     Ui::MainWindow *ui;
