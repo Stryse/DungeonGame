@@ -57,8 +57,7 @@ void GameFieldUI::keyPressEvent(QKeyEvent* event)
 
 void GameFieldUI::loadBlockField()
 {
-    blockField.clear(); // POSSIBLE SEGFAULT POINT
-
+    blockField.clear();
     int mapSize = game->getActiveMap().getSize();
     blockField.resize(mapSize);
     for(int row = 0; row < mapSize; ++row)
@@ -66,28 +65,26 @@ void GameFieldUI::loadBlockField()
         blockField[row].resize(mapSize);
         for(int col = 0; col < mapSize; ++col)
         {
-            // dynamically get path of lit block image
-            QString litPath = game->getActiveMap().getGameBlock(row,col)
-                                  ->getLightTexturePath(AbstractGameBlock::LightLevel::LIT);
-            // dynamically get path of unlit block image
-            QString unlitPath = game->getActiveMap().getGameBlock(row,col)
-                                  ->getLightTexturePath(AbstractGameBlock::LightLevel::UNLIT);
-
-            // Insert Lit texture to blocktextures
-            if(!blockTextures.contains(litPath))
-                blockTextures.insert(litPath,QPixmap(litPath));
-            // Insert Unlit texture to blocktextures
-            if(!blockTextures.contains(unlitPath))
-                blockTextures.insert(unlitPath,QPixmap(unlitPath));
-
-
+            QString lit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::LIT);
+            QString unlit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::UNLIT);
 
             blockField[row][col] = new AbstractGameBlockWidget(this,
-                                                               blockTextures[litPath],
-                                                               blockTextures[unlitPath],
+                                                               blockTextures[lit],
+                                                               blockTextures[unlit],
                                                                *game->getActiveMap().getGameBlock(row,col));
 
             ui->gameFieldGrid->addWidget(blockField[row][col],row,col);
         }
     }
+}
+
+QString GameFieldUI::loadLightTexture(int row, int col,const AbstractGameBlock::LightLevel& lightlevel)
+{
+    QString texturePath = game->getActiveMap().getGameBlock(row,col)
+                              ->getLightTexturePath(lightlevel);
+
+    if(!blockTextures.contains(texturePath))
+        blockTextures.insert(texturePath,QPixmap(texturePath));
+
+    return texturePath;
 }

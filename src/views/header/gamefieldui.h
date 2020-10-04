@@ -36,6 +36,7 @@ private:
     GameLogicModel* game;
 
     void loadBlockField();
+    QString loadLightTexture(int row, int col,const AbstractGameBlock::LightLevel& lightlevel);
 };
 
 #endif // GAMEFIELDUI_H
