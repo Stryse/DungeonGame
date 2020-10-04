@@ -13,6 +13,7 @@ SOURCES += \
     src/models/cpp/gamelogicmodel.cpp \
     src/models/cpp/map.cpp \
     src/models/cpp/player.cpp \
+    src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
     src/views/cpp/gamefieldui.cpp \
     src/views/cpp/mainwindow.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     src/models/header/gamelogicmodel.h \
     src/models/header/map.h \
     src/models/header/player.h \
+    src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \
     src/views/header/mainwindow.h \

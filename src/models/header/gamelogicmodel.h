@@ -15,6 +15,8 @@ public:
 
 public:
     const Player& getPlayer() const;
+    const Map &getActiveMap() const;
+
 
 signals:
     void moved();

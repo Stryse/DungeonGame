@@ -6,6 +6,11 @@ PaintedWidget::PaintedWidget(QWidget *parent)
 {
 }
 
+PaintedWidget::PaintedWidget(QWidget *parent, const QPixmap &pixmap)
+    : QWidget(parent), pixmap(pixmap)
+{
+}
+
 void PaintedWidget::paintEvent(QPaintEvent *)
 {
     QPainter p(this);

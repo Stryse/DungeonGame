@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QPoint>
+#include <QVector>
+#include "abstractgameblockwidget.h"
 
 class Map : public QObject
 {
@@ -13,8 +15,10 @@ public:
     //Direction type
     enum class Direction { UP,DOWN,LEFT,RIGHT };
 
+    //Getter Setter
     QPoint getInitialCoords() const;
     Direction getInitialDirection() const;
+    int getSize() const;
 
 
 signals:
@@ -22,6 +26,7 @@ signals:
 private:
     QPoint initialCoords;
     Direction initialDirection;
+    int size;
 
 };
 

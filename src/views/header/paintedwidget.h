@@ -8,7 +8,8 @@ class PaintedWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PaintedWidget(QWidget *parent);
+    explicit PaintedWidget(QWidget* parent);
+    explicit PaintedWidget(QWidget* parent,const QPixmap& pixmap);
 
     const QPixmap &getPixmap() const;
     void setPixmap(const QString& path);

@@ -2,9 +2,10 @@
 #define GAMEFIELDUI_H
 
 #include <QWidget>
-#include <QMap>
+#include <QVector>
+#include <QPixmap>
+#include "abstractgameblockwidget.h"
 #include "gamelogicmodel.h"
-
 
 namespace Ui {
 class GameFieldUI;
@@ -27,8 +28,17 @@ protected:
 private:
     //FIELDS
     Ui::GameFieldUI *ui;
+
+    QPixmap roadTexture;
+    QPixmap wallTexture;
+
+    QVector<AbstractGameBlockWidget*>blockTypes;
+    QVector<QVector<AbstractGameBlockWidget*>> blockField;
     GameLogicModel* game;
 
+
+    void loadBlockTypes();
+    void loadBlockField();
 };
 
 #endif // GAMEFIELDUI_H

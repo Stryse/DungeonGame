@@ -3,5 +3,8 @@
         <file>resources/img/backgrounds/brick_background.png</file>
         <file>resources/img/backgrounds/char_creat_background.jpg</file>
         <file>resources/img/player/amonguscyan.png</file>
+        <file>resources/img/blocks/invalid_block.png</file>
+        <file>resources/img/blocks/road.jpg</file>
+        <file>resources/img/blocks/wall.jpg</file>
     </qresource>
 </RCC>

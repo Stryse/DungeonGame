@@ -13,3 +13,8 @@ const Player &GameLogicModel::getPlayer() const
 {
     return player;
 }
+
+const Map &GameLogicModel::getActiveMap() const
+{
+    return activeMap;
+}
