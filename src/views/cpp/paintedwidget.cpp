@@ -9,7 +9,12 @@ PaintedWidget::PaintedWidget(QWidget *parent)
 void PaintedWidget::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    p.drawPixmap(geometry().x()-20,geometry().y()-20,geometry().width(),geometry().height(),pixmap);
+    pixmap = pixmap.scaledToWidth(width());
+    const QSize pixSize = pixmap.size();
+    const int x = (this->rect().width() - pixSize .width()) / 2.0;
+    const int y = (this->rect().height() - pixSize .height()) / 2.0;
+
+    p.drawPixmap(x,y,pixSize.width(),pixSize.height(),pixmap);
 }
 
 const QPixmap &PaintedWidget::getPixmap() const
@@ -20,4 +25,9 @@ const QPixmap &PaintedWidget::getPixmap() const
 void PaintedWidget::setPixmap(const QString& path)
 {
     pixmap.load(path);
+}
+
+void PaintedWidget::setPixmap(const QPixmap &pxmap)
+{
+    pixmap = pxmap;
 }

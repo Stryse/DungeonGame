@@ -10,7 +10,8 @@ class Player : public QObject
     Q_OBJECT
 public:
     //CTOR
-    explicit Player(QObject *parent, QPixmap* portrait);
+    explicit Player(QObject *parent, QPixmap* portrait,
+                    const QString& pName, int strength = 1, int intellct = 1, int stamina = 1);
 
 public:
     QPixmap* getPortrait() const;

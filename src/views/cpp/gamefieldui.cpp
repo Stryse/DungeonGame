@@ -13,7 +13,13 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
     ui(new Ui::GameFieldUI)
 {
     ui->setupUi(this);
-    ui->playerPortraitWidget->setPixmap(":/resources/img/player/amonguscyan.png");
+
+    QPixmap portrait(":/resources/img/player/amonguscyan.png");
+    Player p(this,&portrait,"Cyan",1,2,3);
+
+    ui->playerPortraitWidget->setPixmap(portrait);
+    ui->playerNameLabel->setText(p.getPlayerName());
+
     setFocus();
 }
 

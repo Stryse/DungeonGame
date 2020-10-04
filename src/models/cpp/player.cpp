@@ -1,8 +1,10 @@
 #include "player.h"
 
-Player::Player(QObject *parent,QPixmap* portrait)
+Player::Player(QObject *parent, QPixmap* portrait,
+                    const QString& pName,int strength, int intellct, int stamina)
     : QObject(parent)
     , portrait(portrait)
+    , playerName(pName),strength(strength),intellect(intellct),stamina(stamina)
 {
 
 }

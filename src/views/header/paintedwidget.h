@@ -12,6 +12,7 @@ public:
 
     const QPixmap &getPixmap() const;
     void setPixmap(const QString& path);
+    void setPixmap(const QPixmap& pxmap);
 
 signals:
 
