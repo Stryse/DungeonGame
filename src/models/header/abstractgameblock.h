@@ -22,7 +22,7 @@ public:
 
     // TODO return by ref
     virtual QString getLightTexturePath(const LightLevel& lightlevel) const = 0;
-    virtual void DoPlayerEnter(Player& player);
+    virtual void DoPlayerEnter(const Player& player);
 
 signals:
     void playerEntered(const Player& player);

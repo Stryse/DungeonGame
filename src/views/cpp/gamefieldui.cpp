@@ -32,6 +32,7 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
     setFocus();
 
+    game->getActiveMap().getGameBlock(4,1)->DoPlayerEnter(game->getPlayer());
 }
 
 GameFieldUI::~GameFieldUI()
@@ -60,6 +61,7 @@ void GameFieldUI::loadBlockField()
 {
     blockField.clear();
     int mapSize = game->getActiveMap().getSize();
+
     blockField.resize(mapSize);
     for(int row = 0; row < mapSize; ++row)
     {

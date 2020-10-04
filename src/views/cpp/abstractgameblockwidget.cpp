@@ -5,7 +5,7 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
                                                  const QPixmap& litTexture,
                                                  const QPixmap& unlitTexture,
                                                  const AbstractGameBlock& blockData)
-    :PaintedWidget(parent,litTexture)
+    :PaintedWidget(parent,litTexture) // TODO: set to Unlit
     ,litTexture(litTexture), unlitTexture(unlitTexture)
     ,blockData(blockData)
 {
