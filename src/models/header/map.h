@@ -7,7 +7,6 @@
 
 #include "abstractgameblock.h"
 
-class AbstractGameBlock;
 class Map : public QObject
 {
     Q_OBJECT

@@ -1,7 +1,8 @@
-#ifndef ABSTRACTGAMEBLOCK_H
-#define ABSTRACTGAMEBLOCK_H
+#ifndef ABSTRACTGAMEBLOCKWIDGET_H
+#define ABSTRACTGAMEBLOCKWIDGET_H
 
 #include "paintedwidget.h"
+#include "abstractgameblock.h"
 
 class AbstractGameBlockWidget : public PaintedWidget
 {
@@ -23,6 +24,7 @@ signals:
 private:
     const QPixmap& litTexture;
     const QPixmap& unlitTexture;
+    AbstractGameBlock* blockData;
 };
 
-#endif // ABSTRACTGAMEBLOCK_H
+#endif // ABSTRACTGAMEBLOCKWIDGET_H
