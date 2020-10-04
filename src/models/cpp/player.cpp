@@ -19,7 +19,7 @@ int Player::getStrength() const
     return strength;
 }
 
-QPixmap Player::getPortrait() const
+const QPixmap& Player::getPortrait() const
 {
     return portrait;
 }

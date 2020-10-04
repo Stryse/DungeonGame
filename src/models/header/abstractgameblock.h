@@ -2,6 +2,7 @@
 #define ABSTRACTGAMEBLOCK_H
 
 #include <QObject>
+#include "player.h"
 
 class AbstractGameBlock : public QObject
 {
@@ -21,9 +22,10 @@ public:
 
     // TODO return by ref
     virtual QString getLightTexturePath(const LightLevel& lightlevel) const = 0;
-
+    virtual void DoPlayerEnter(Player& player);
 
 signals:
+    void playerEntered(const Player& player);
 
 private:
     bool hasPlayer;

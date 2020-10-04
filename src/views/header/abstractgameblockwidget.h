@@ -11,8 +11,7 @@ class AbstractGameBlockWidget : public PaintedWidget
 
 public:
     explicit AbstractGameBlockWidget(QWidget *parent, const QPixmap& litTexture,
-                                     const QPixmap& unlitTexture, /*const*/ AbstractGameBlock& blockData,
-                                     QPixmap* playerTexture = nullptr);
+                                     const QPixmap& unlitTexture,const AbstractGameBlock& blockData);
 
              AbstractGameBlockWidget(const AbstractGameBlockWidget& other);
              AbstractGameBlockWidget operator=(const AbstractGameBlockWidget& other);
@@ -22,7 +21,6 @@ public:
     const QPixmap &getUnlitTexture() const;
     void lit();
     void unlit();
-    void setPlayerTexture(QPixmap* portrait);
 
 signals:
 
@@ -32,12 +30,12 @@ protected:
 private:
     const QPixmap& litTexture;
     const QPixmap& unlitTexture;
-    QPixmap* playerTexture;
-    /*const*/AbstractGameBlock& blockData;
+    QPixmap playerTexture;
+    const AbstractGameBlock& blockData;
 
 // TODO: MAKE PRIVATE
 public slots:
-    void playerEntered(const Player* player);
+    void onPlayerEntered(const Player& player);
 
 };
 

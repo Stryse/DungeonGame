@@ -32,8 +32,6 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
     setFocus();
 
-    blockField[0][1]->setPlayerTexture(playerPortrait);
-    blockField[0][1]->playerEntered(&game->getPlayer());
 }
 
 GameFieldUI::~GameFieldUI()

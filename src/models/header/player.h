@@ -14,7 +14,7 @@ public:
                     const QString& pName, int strength = 1, int intellct = 1, int stamina = 1);
 
 public:
-    /*const ref*/QPixmap getPortrait() const;
+    const QPixmap& getPortrait() const;
     QString getPlayerName() const;
     int getStrength() const;
 
@@ -23,7 +23,7 @@ signals:
 
 private:
 
-    QPixmap portrait;
+    const QPixmap& portrait;
     QString playerName;
     int strength;
     int intellect;

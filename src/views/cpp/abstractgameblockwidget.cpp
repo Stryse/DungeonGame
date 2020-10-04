@@ -4,12 +4,12 @@
 AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
                                                  const QPixmap& litTexture,
                                                  const QPixmap& unlitTexture,
-                                                 /*const*/ AbstractGameBlock& blockData,
-                                                 QPixmap* playerTexture)
+                                                 const AbstractGameBlock& blockData)
     :PaintedWidget(parent,litTexture)
-    ,litTexture(litTexture), unlitTexture(unlitTexture),playerTexture(playerTexture)
+    ,litTexture(litTexture), unlitTexture(unlitTexture)
     ,blockData(blockData)
 {
+    connect(&blockData,SIGNAL(playerEntered(const Player&)),this,SLOT(onPlayerEntered(const Player&)));
 }
 
 AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &other)
@@ -44,11 +44,6 @@ void AbstractGameBlockWidget::unlit()
     setPixmap(unlitTexture);
 }
 
-void AbstractGameBlockWidget::setPlayerTexture(QPixmap *portrait)
-{
-    playerTexture = portrait;
-}
-
 void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
 {
     if(!blockData.getHasPlayer())
@@ -56,8 +51,10 @@ void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
     else
     {
         PaintedWidget::paintEvent(event);
+        // DRAW PLAYER PORTRAIT ONTO BACKGROUND
+
         QPainter p(&getPixmap());
-        QPixmap scaledPortrait = playerTexture->scaledToWidth(getPixmap().width()*0.8,Qt::SmoothTransformation);
+        QPixmap scaledPortrait = playerTexture.scaledToWidth(getPixmap().width()*0.8,Qt::SmoothTransformation);
         int x = (getPixmap().width()-scaledPortrait.width()) / 2;
         int y = (getPixmap().height()-scaledPortrait.height()) / 2;
         p.drawPixmap(x,y,scaledPortrait.width(),scaledPortrait.height(),scaledPortrait);
@@ -65,8 +62,7 @@ void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
     }
 }
 
-void AbstractGameBlockWidget::playerEntered(const Player* player)
+void AbstractGameBlockWidget::onPlayerEntered(const Player& player)
 {
-    blockData.setHasPlayer(true);
-    //playerTexture = player->getPortrait();
+    playerTexture = player.getPortrait();
 }
