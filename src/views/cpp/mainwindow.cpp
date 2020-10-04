@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , gameUI(nullptr)
     , charCreateUI(nullptr)
 {
     ui->setupUi(this);

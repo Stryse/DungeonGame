@@ -8,7 +8,6 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(QWidget *parent, const QPixmap&
 AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &other)
     :PaintedWidget(other.parentWidget(),other.litTexture),litTexture(other.litTexture),unlitTexture(other.unlitTexture)
 {
-
 }
 
 AbstractGameBlockWidget AbstractGameBlockWidget::operator=(const AbstractGameBlockWidget &other)

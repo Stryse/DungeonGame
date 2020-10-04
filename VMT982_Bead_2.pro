@@ -10,9 +10,11 @@ CONFIG += c++11
 
 SOURCES += \
     src/main.cpp \
+    src/models/cpp/abstractgameblock.cpp \
     src/models/cpp/gamelogicmodel.cpp \
     src/models/cpp/map.cpp \
     src/models/cpp/player.cpp \
+    src/models/cpp/roadblock.cpp \
     src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
     src/views/cpp/gamefieldui.cpp \
@@ -20,9 +22,11 @@ SOURCES += \
     src/views/cpp/paintedwidget.cpp
 
 HEADERS += \
+    src/models/header/abstractgameblock.h \
     src/models/header/gamelogicmodel.h \
     src/models/header/map.h \
     src/models/header/player.h \
+    src/models/header/roadblock.h \
     src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \

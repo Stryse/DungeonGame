@@ -22,12 +22,15 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
     ui->playerPortraitWidget->setPixmap(portrait);
     ui->playerNameLabel->setText(p.getPlayerName());
 
+
     // TODO: DELETE object creation here
     Map m(this);
+    m.loadMapFromFile(":/resources/maps/Map_01.txt");
     game = new GameLogicModel(this,m,p);
     loadBlockTypes();
     loadBlockField();
 
+    ui->mapNameLabel->setText(game->getActiveMap().getMapName());
     setFocus();
 }
 
@@ -63,6 +66,8 @@ void GameFieldUI::loadBlockTypes()
 
 void GameFieldUI::loadBlockField()
 {
+    blockField.clear(); // POSSIBLE SEGFAULT POINT
+
     int mapSize = game->getActiveMap().getSize();
     blockField.resize(mapSize);
     for(int row = 0; row < mapSize; ++row)

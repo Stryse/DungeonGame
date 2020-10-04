@@ -6,5 +6,6 @@
         <file>resources/img/blocks/invalid_block.png</file>
         <file>resources/img/blocks/road.jpg</file>
         <file>resources/img/blocks/wall.jpg</file>
+        <file>resources/maps/Map_01.txt</file>
     </qresource>
 </RCC>

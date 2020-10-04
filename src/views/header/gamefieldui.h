@@ -32,7 +32,7 @@ private:
     QPixmap roadTexture;
     QPixmap wallTexture;
 
-    QVector<AbstractGameBlockWidget*>blockTypes;
+    QVector<AbstractGameBlockWidget*> blockTypes;
     QVector<QVector<AbstractGameBlockWidget*>> blockField;
     GameLogicModel* game;
 
