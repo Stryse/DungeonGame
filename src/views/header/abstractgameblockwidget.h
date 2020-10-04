@@ -9,9 +9,12 @@ class AbstractGameBlockWidget : public PaintedWidget
     Q_OBJECT
 
 public:
-    explicit AbstractGameBlockWidget(QWidget *parent, const QPixmap& litTexture, const QPixmap& unlitTexture);
-    AbstractGameBlockWidget(const AbstractGameBlockWidget& other);
-    AbstractGameBlockWidget operator=(const AbstractGameBlockWidget& other);
+    explicit AbstractGameBlockWidget(QWidget *parent, const QPixmap& litTexture,
+                                     const QPixmap& unlitTexture, const AbstractGameBlock& blockData);
+
+             AbstractGameBlockWidget(const AbstractGameBlockWidget& other);
+             AbstractGameBlockWidget operator=(const AbstractGameBlockWidget& other);
+
 
     const QPixmap &getLitTexture() const;
     const QPixmap &getUnlitTexture() const;
@@ -24,7 +27,7 @@ signals:
 private:
     const QPixmap& litTexture;
     const QPixmap& unlitTexture;
-    AbstractGameBlock* blockData;
+    const AbstractGameBlock& blockData;
 };
 
 #endif // ABSTRACTGAMEBLOCKWIDGET_H

@@ -1,20 +1,20 @@
-#include "roadblock.h"
+#include "wallblock.h"
 
-RoadBlock::RoadBlock()
+WallBlock::WallBlock()
 {
 
 }
 
-QString RoadBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &lightlevel) const
+QString WallBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &lightlevel) const
 {
     switch (lightlevel)
     {
         case AbstractGameBlock::LightLevel::LIT:
-            return QString(":/resources/img/blocks/road.jpg");
+            return QString(":/resources/img/blocks/wall.jpg");
         break;
 
         case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/road.jpg");
+            return QString(":/resources/img/blocks/wall.jpg");
         break;
 
         case AbstractGameBlock::LightLevel::UNLIT:

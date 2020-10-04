@@ -15,6 +15,7 @@ SOURCES += \
     src/models/cpp/map.cpp \
     src/models/cpp/player.cpp \
     src/models/cpp/roadblock.cpp \
+    src/models/cpp/wallblock.cpp \
     src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
     src/views/cpp/gamefieldui.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     src/models/header/map.h \
     src/models/header/player.h \
     src/models/header/roadblock.h \
+    src/models/header/wallblock.h \
     src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \

@@ -24,7 +24,7 @@ void Map::loadMapFromFile(const QString &filePath)
         blockFieldData[row].resize(size);
         for(int col = 0; col < size; ++col)
         {
-            QString type = stream.read(1);
+            QString type; stream >> type;
             blockFieldData[row][col] = (AbstractGameBlock::create(type));
         }
     }
@@ -36,6 +36,11 @@ void Map::loadMapFromFile(const QString &filePath)
 Map::Direction Map::getInitialDirection() const
 {
     return initialDirection;
+}
+
+AbstractGameBlock *Map::getGameBlock(int row, int col) const
+{
+    return blockFieldData[row][col];
 }
 
 int Map::getSize() const

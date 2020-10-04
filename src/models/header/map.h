@@ -21,6 +21,7 @@ public:
     QString getMapName() const;
     QPoint getInitialCoords() const;
     Direction getInitialDirection() const;
+    AbstractGameBlock* getGameBlock(int row, int col) const;
     void loadMapFromFile(const QString& filePath);
 
     int getSize() const;

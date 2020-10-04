@@ -1,17 +1,17 @@
-#ifndef ROADBLOCK_H
-#define ROADBLOCK_H
+#ifndef WALLBLOCK_H
+#define WALLBLOCK_H
 
 #include <abstractgameblock.h>
 #include <QObject>
 
-class RoadBlock : public AbstractGameBlock
+class WallBlock : public AbstractGameBlock
 {
 public:
-    RoadBlock();
+    WallBlock();
 
     // AbstractGameBlock interface
 public:
     QString getLightTexturePath(const LightLevel &lightlevel) const override;
 };
 
-#endif // ROADBLOCK_H
+#endif // WALLBLOCK_H

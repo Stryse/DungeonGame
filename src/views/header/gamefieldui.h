@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QVector>
 #include <QPixmap>
+#include <QMap>
+
 #include "abstractgameblockwidget.h"
 #include "gamelogicmodel.h"
 
@@ -29,15 +31,10 @@ private:
     //FIELDS
     Ui::GameFieldUI *ui;
 
-    QPixmap roadTexture;
-    QPixmap wallTexture;
-
-    QVector<AbstractGameBlockWidget*> blockTypes;
+    QMap<QString,QPixmap> blockTextures; // Collective store for textures
     QVector<QVector<AbstractGameBlockWidget*>> blockField;
     GameLogicModel* game;
 
-
-    void loadBlockTypes();
     void loadBlockField();
 };
 

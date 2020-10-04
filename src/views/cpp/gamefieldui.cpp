@@ -27,7 +27,6 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
     Map m(this);
     m.loadMapFromFile(":/resources/maps/Map_01.txt");
     game = new GameLogicModel(this,m,p);
-    loadBlockTypes();
     loadBlockField();
 
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
@@ -56,14 +55,6 @@ void GameFieldUI::keyPressEvent(QKeyEvent* event)
     }
 }
 
-void GameFieldUI::loadBlockTypes()
-{
-    wallTexture = QPixmap(":/resources/img/blocks/wall.jpg");
-    roadTexture = QPixmap(":/resources/img/blocks/road.jpg");
-    blockTypes.push_back(new AbstractGameBlockWidget(nullptr,roadTexture,wallTexture));
-    blockTypes.push_back(new AbstractGameBlockWidget(nullptr,wallTexture,wallTexture));
-}
-
 void GameFieldUI::loadBlockField()
 {
     blockField.clear(); // POSSIBLE SEGFAULT POINT
@@ -75,7 +66,27 @@ void GameFieldUI::loadBlockField()
         blockField[row].resize(mapSize);
         for(int col = 0; col < mapSize; ++col)
         {
-            blockField[row][col] = new AbstractGameBlockWidget(this,roadTexture,wallTexture);
+            // dynamically get path of lit block image
+            QString litPath = game->getActiveMap().getGameBlock(row,col)
+                                  ->getLightTexturePath(AbstractGameBlock::LightLevel::LIT);
+            // dynamically get path of unlit block image
+            QString unlitPath = game->getActiveMap().getGameBlock(row,col)
+                                  ->getLightTexturePath(AbstractGameBlock::LightLevel::UNLIT);
+
+            // Insert Lit texture to blocktextures
+            if(!blockTextures.contains(litPath))
+                blockTextures.insert(litPath,QPixmap(litPath));
+            // Insert Unlit texture to blocktextures
+            if(!blockTextures.contains(unlitPath))
+                blockTextures.insert(unlitPath,QPixmap(unlitPath));
+
+
+
+            blockField[row][col] = new AbstractGameBlockWidget(this,
+                                                               blockTextures[litPath],
+                                                               blockTextures[unlitPath],
+                                                               *game->getActiveMap().getGameBlock(row,col));
+
             ui->gameFieldGrid->addWidget(blockField[row][col],row,col);
         }
     }
