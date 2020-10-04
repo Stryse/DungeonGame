@@ -204,10 +204,7 @@ border-radius: 10px;
 }</string>
         </property>
         <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="0,0,0">
-         <property name="horizontalSpacing">
-          <number>0</number>
-         </property>
-         <property name="verticalSpacing">
+         <property name="spacing">
           <number>5</number>
          </property>
          <item row="1" column="0">

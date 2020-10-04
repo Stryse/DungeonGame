@@ -32,6 +32,7 @@ private:
     Ui::GameFieldUI *ui;
 
     QMap<QString,QPixmap> blockTextures; // Collective store for textures
+    QPixmap* playerPortrait;
     QVector<QVector<AbstractGameBlockWidget*>> blockField;
     GameLogicModel* game;
 

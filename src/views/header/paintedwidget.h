@@ -12,6 +12,7 @@ public:
     explicit PaintedWidget(QWidget* parent,const QPixmap& pixmap);
 
     const QPixmap &getPixmap() const;
+    QPixmap &getPixmap();
     void setPixmap(const QString& path);
     void setPixmap(const QPixmap& pxmap);
 

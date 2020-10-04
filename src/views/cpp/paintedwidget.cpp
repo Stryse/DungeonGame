@@ -22,7 +22,12 @@ void PaintedWidget::paintEvent(QPaintEvent *)
     p.drawPixmap(x,y,pixSize.width(),pixSize.height(),pixmap);
 }
 
-const QPixmap &PaintedWidget::getPixmap() const
+const QPixmap& PaintedWidget::getPixmap() const
+{
+    return pixmap;
+}
+
+QPixmap& PaintedWidget::getPixmap()
 {
     return pixmap;
 }

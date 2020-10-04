@@ -14,12 +14,12 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPixmap portrait(":/resources/img/player/amonguscyan.png");
+    playerPortrait = new QPixmap(":/resources/img/player/amonguscyan.png");
 
 
     // TODO: change to gamedata
-    Player p(this,&portrait,"Cyan",1,2,3);
-    ui->playerPortraitWidget->setPixmap(portrait);
+    Player p(this,*playerPortrait,"Cyan",1,2,3);
+    ui->playerPortraitWidget->setPixmap(*playerPortrait);
     ui->playerNameLabel->setText(p.getPlayerName());
 
 
@@ -31,6 +31,9 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
 
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
     setFocus();
+
+    blockField[0][1]->setPlayerTexture(playerPortrait);
+    blockField[0][1]->playerEntered(&game->getPlayer());
 }
 
 GameFieldUI::~GameFieldUI()

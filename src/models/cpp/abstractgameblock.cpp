@@ -20,6 +20,11 @@ bool AbstractGameBlock::getHasPlayer() const
     return hasPlayer;
 }
 
+void AbstractGameBlock::setHasPlayer(bool value)
+{
+    hasPlayer = value;
+}
+
 AbstractGameBlock::LightLevel AbstractGameBlock::getLightLevel() const
 {
     return lightLevel;
