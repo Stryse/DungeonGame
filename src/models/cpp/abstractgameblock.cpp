@@ -30,7 +30,11 @@ AbstractGameBlock::LightLevel AbstractGameBlock::getLightLevel() const
     return lightLevel;
 }
 
-void AbstractGameBlock::setLightLevel(const LightLevel &value)
+void AbstractGameBlock::setLightLevel(const AbstractGameBlock::LightLevel& value)
 {
-    lightLevel = value;
+    if(lightLevel != value)
+    {
+        lightLevel = value;
+        emit lightLevelChanged(lightLevel);
+    }
 }

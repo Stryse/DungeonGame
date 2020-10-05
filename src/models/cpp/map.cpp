@@ -50,6 +50,11 @@ bool Map::isInMapBounds(int row, int col) const
     return row >= 0 && row < size && col >= 0 && col < size;
 }
 
+bool Map::isInMapBounds(const QPoint& point) const
+{
+    return isInMapBounds(point.x(),point.y());
+}
+
 Map::Direction Map::getInitialDirection() const
 {
     return initialDirection;
@@ -58,6 +63,11 @@ Map::Direction Map::getInitialDirection() const
 AbstractGameBlock *Map::getGameBlock(int row, int col) const
 {
     return blockFieldData[row][col];
+}
+
+AbstractGameBlock* Map::getGameBlock(const QPoint& point) const
+{
+    return getGameBlock(point.y(),point.x());
 }
 
 int Map::getSize() const

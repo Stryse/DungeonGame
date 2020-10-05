@@ -24,11 +24,13 @@ public:
     virtual QString getLightTexturePath(const LightLevel& lightlevel) const = 0;
     virtual void DoPlayerEnter(const Player& player) = 0;
     virtual void DoPlayerExit (const Player& player) = 0;
+    virtual bool isLightBlocking() const = 0;
 
 
 signals:
     void playerEntered(const Player& player);
     void playerExited (const Player& player);
+    void lightLevelChanged(const AbstractGameBlock::LightLevel& lightLevel);
 
 private:
     bool hasPlayer;

@@ -16,14 +16,6 @@ public:
              AbstractGameBlockWidget(const AbstractGameBlockWidget& other);
              AbstractGameBlockWidget operator=(const AbstractGameBlockWidget& other);
 
-
-    const QPixmap &getLitTexture() const;
-    const QPixmap &getUnlitTexture() const;
-    void lit();
-    void unlit();
-
-signals:
-
 protected:
     void paintEvent(QPaintEvent* event) override;
 
@@ -39,6 +31,7 @@ private:
 public slots:
     void onPlayerEntered(const Player& player);
     void onPlayerExited(const Player&);
+    void onLightLevelChanged(const AbstractGameBlock::LightLevel& lightlevel);
 
 };
 

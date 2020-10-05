@@ -38,3 +38,17 @@ void RoadBlock::DoPlayerExit(const Player& player)
     setHasPlayer(false);
     emit AbstractGameBlock::playerExited(player);
 }
+
+bool RoadBlock::isLightBlocking() const
+{
+    return false;
+}
+
+//void RoadBlock::setLightLevel(const AbstractGameBlock::LightLevel& value)
+//{
+//    if(lightLevel != value)
+//    {
+//        lightLevel = value;
+//        emit AbstractGameBlock::lightLevelChanged(lightLevel);
+//    }
+//}

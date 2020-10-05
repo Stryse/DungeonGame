@@ -5,12 +5,13 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
                                                  const QPixmap& litTexture,
                                                  const QPixmap& unlitTexture,
                                                  const AbstractGameBlock& blockData)
-    :PaintedWidget(parent,litTexture) // TODO: set to Unlit
+    :PaintedWidget(parent,unlitTexture) // TODO: set to Unlit
     ,litTexture(litTexture), unlitTexture(unlitTexture)
     ,blockData(blockData)
 {
     connect(&blockData,SIGNAL(playerEntered(const Player&)),this,SLOT(onPlayerEntered(const Player&)));
     connect(&blockData,SIGNAL(playerExited(const Player&)),this,SLOT(onPlayerExited(const Player&)));
+    connect(&blockData,SIGNAL(lightLevelChanged(const AbstractGameBlock::LightLevel&)),SLOT(onLightLevelChanged(const AbstractGameBlock::LightLevel&)));
 }
 
 AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &other)
@@ -23,26 +24,6 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &
 AbstractGameBlockWidget AbstractGameBlockWidget::operator=(const AbstractGameBlockWidget &other)
 {
     return AbstractGameBlockWidget(other);
-}
-
-const QPixmap &AbstractGameBlockWidget::getLitTexture() const
-{
-    return litTexture;
-}
-
-const QPixmap &AbstractGameBlockWidget::getUnlitTexture() const
-{
-    return unlitTexture;
-}
-
-void AbstractGameBlockWidget::lit()
-{
-    setPixmap(litTexture);
-}
-
-void AbstractGameBlockWidget::unlit()
-{
-    setPixmap(unlitTexture);
 }
 
 void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
@@ -71,6 +52,16 @@ void AbstractGameBlockWidget::onPlayerEntered(const Player& player)
 
 void AbstractGameBlockWidget::onPlayerExited(const Player&)
 {
-    lit();
+    onLightLevelChanged(AbstractGameBlock::LightLevel::UNLIT);
+    update();
+}
+
+void AbstractGameBlockWidget::onLightLevelChanged(const AbstractGameBlock::LightLevel& lightlevel)
+{
+    if(lightlevel == AbstractGameBlock::LightLevel::LIT)
+        setPixmap(litTexture);
+    else
+        setPixmap(unlitTexture);
+
     update();
 }

@@ -4,6 +4,7 @@
 GameLogicModel::GameLogicModel(QObject *parent,const Map& map,const Player& player)
     : QObject(parent)
     , activeMap(map)
+    , lightFiller(this,activeMap,2)
     , player(player)
     , playerCoords(activeMap.getInitialCoords())
     , playerDirection(activeMap.getInitialDirection())
@@ -52,16 +53,7 @@ void GameLogicModel::movePlayer(const Map::Direction& direction)
 void GameLogicModel::onUIReady()
 {
     placePlayer(playerCoords,playerCoords);
-}
-
-void GameLogicModel::updateEnvironmentLights(const QPoint& center, int radius)
-{
-    for(int row = center.x()-radius; row <= center.x()+radius; ++row)
-        for(int col = center.y()-radius; col <= center.y()+radius; ++col)
-        {
-            if(activeMap.isInMapBounds(col,row))
-                activeMap.getGameBlock(col,row)->setLightLevel(AbstractGameBlock::LightLevel::UNLIT);
-        }
+    lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,AbstractGameBlock::LightLevel::LIT);
 }
 
 bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)
@@ -77,6 +69,7 @@ bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)
         {
             activeMap.getGameBlock(oldPos.y(),oldPos.x())->DoPlayerExit(player);
             playerCoords = {newPos.x(),newPos.y()};
+            lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,AbstractGameBlock::LightLevel::LIT);
             return true; // Position changed
         }
     }

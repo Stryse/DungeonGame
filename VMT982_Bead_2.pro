@@ -12,6 +12,7 @@ SOURCES += \
     src/main.cpp \
     src/models/cpp/abstractgameblock.cpp \
     src/models/cpp/gamelogicmodel.cpp \
+    src/models/cpp/lightfiller.cpp \
     src/models/cpp/map.cpp \
     src/models/cpp/player.cpp \
     src/models/cpp/roadblock.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     src/models/header/abstractgameblock.h \
     src/models/header/gamelogicmodel.h \
+    src/models/header/lightfiller.h \
     src/models/header/map.h \
     src/models/header/player.h \
     src/models/header/roadblock.h \

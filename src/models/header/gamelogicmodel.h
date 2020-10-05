@@ -4,6 +4,7 @@
 #include <QObject>
 #include "player.h"
 #include "map.h"
+#include "lightfiller.h"
 
 class GameLogicModel : public QObject
 {
@@ -25,14 +26,13 @@ public slots:
 
 private slots:
     void onUIReady();
-    void updateEnvironmentLights(const QPoint& center, int radius);
 
 private:
 //FIELDS
 
     //Map
     const Map& activeMap; // MIGHT NEED POINTER
-
+    LightFiller lightFiller;
     //Player
     const Player& player;
     QPoint playerCoords;
