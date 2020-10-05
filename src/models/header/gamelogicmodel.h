@@ -22,8 +22,10 @@ signals:
 
 public slots:
     void movePlayer(const Map::Direction& direction);
+
 private slots:
     void onUIReady();
+    void updateEnvironmentLights(const QPoint& center, int radius);
 
 private:
 //FIELDS

@@ -54,6 +54,16 @@ void GameLogicModel::onUIReady()
     placePlayer(playerCoords,playerCoords);
 }
 
+void GameLogicModel::updateEnvironmentLights(const QPoint& center, int radius)
+{
+    for(int row = center.x()-radius; row <= center.x()+radius; ++row)
+        for(int col = center.y()-radius; col <= center.y()+radius; ++col)
+        {
+            if(activeMap.isInMapBounds(col,row))
+                activeMap.getGameBlock(col,row)->setLightLevel(AbstractGameBlock::LightLevel::UNLIT);
+        }
+}
+
 bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)
 {
     if(activeMap.isInMapBounds(newPos.y(),newPos.x()))
