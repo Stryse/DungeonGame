@@ -76,10 +76,12 @@ void GameFieldUI::loadBlockField()
         {
             QString lit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::LIT);
             QString unlit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::UNLIT);
+            QString halflit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::HALF_LIT);
 
             blockField[row][col] = new AbstractGameBlockWidget(this,
                                                                blockTextures[lit],
                                                                blockTextures[unlit],
+                                                               blockTextures[halflit],
                                                                *game->getActiveMap().getGameBlock(row,col));
 
             ui->gameFieldGrid->addWidget(blockField[row][col],row,col);

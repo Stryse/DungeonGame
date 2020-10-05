@@ -11,7 +11,7 @@ public:
 
     explicit AbstractGameBlock(QObject *parent = nullptr);
     static AbstractGameBlock* create(const QString& type);
-    enum class LightLevel { UNLIT,HALF_LIT,LIT  };
+    enum class LightLevel { UNLIT = 0,LIT,HALF_LIT};
 
 
     bool getHasPlayer() const;

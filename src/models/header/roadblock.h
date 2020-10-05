@@ -15,7 +15,6 @@ public:
     void DoPlayerEnter(const Player& player) override;
     void DoPlayerExit(const Player& player) override;
     bool isLightBlocking() const override;
-    //void setLightLevel(const LightLevel& value) override;
 
 };
 

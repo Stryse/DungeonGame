@@ -52,7 +52,7 @@ bool Map::isInMapBounds(int row, int col) const
 
 bool Map::isInMapBounds(const QPoint& point) const
 {
-    return isInMapBounds(point.x(),point.y());
+    return isInMapBounds(point.y(),point.x());
 }
 
 Map::Direction Map::getInitialDirection() const

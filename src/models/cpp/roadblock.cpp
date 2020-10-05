@@ -14,11 +14,11 @@ QString RoadBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &ligh
         break;
 
         case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/road.jpg");
+            return QString(":/resources/img/blocks/road_half_lit.jpg");
         break;
 
         case AbstractGameBlock::LightLevel::UNLIT:
-            return QString(":/resources/img/blocks/wall.jpg");
+            return QString(":/resources/img/blocks/wall_unlit.jpg");
         break;
 
         default:
@@ -43,12 +43,3 @@ bool RoadBlock::isLightBlocking() const
 {
     return false;
 }
-
-//void RoadBlock::setLightLevel(const AbstractGameBlock::LightLevel& value)
-//{
-//    if(lightLevel != value)
-//    {
-//        lightLevel = value;
-//        emit AbstractGameBlock::lightLevelChanged(lightLevel);
-//    }
-//}

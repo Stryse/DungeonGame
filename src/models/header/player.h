@@ -18,7 +18,6 @@ public:
     QString getPlayerName() const;
     int getStrength() const;
 
-
 signals:
 
 private:

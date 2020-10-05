@@ -11,7 +11,7 @@ class AbstractGameBlockWidget : public PaintedWidget
 
 public:
     explicit AbstractGameBlockWidget(QWidget *parent, const QPixmap& litTexture,
-                                     const QPixmap& unlitTexture,const AbstractGameBlock& blockData);
+                                     const QPixmap& unlitTexture,const QPixmap& halfLitTexture,const AbstractGameBlock& blockData);
 
              AbstractGameBlockWidget(const AbstractGameBlockWidget& other);
              AbstractGameBlockWidget operator=(const AbstractGameBlockWidget& other);
@@ -22,6 +22,7 @@ protected:
 private:
     const QPixmap& litTexture;
     const QPixmap& unlitTexture;
+    const QPixmap& halfLitTexture;
 
     // TODO make it pointer
     QPixmap playerTexture;

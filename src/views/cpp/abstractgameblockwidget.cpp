@@ -4,9 +4,10 @@
 AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
                                                  const QPixmap& litTexture,
                                                  const QPixmap& unlitTexture,
+                                                 const QPixmap& halfLitTexture,
                                                  const AbstractGameBlock& blockData)
     :PaintedWidget(parent,unlitTexture) // TODO: set to Unlit
-    ,litTexture(litTexture), unlitTexture(unlitTexture)
+    ,litTexture(litTexture), unlitTexture(unlitTexture),halfLitTexture(halfLitTexture)
     ,blockData(blockData)
 {
     connect(&blockData,SIGNAL(playerEntered(const Player&)),this,SLOT(onPlayerEntered(const Player&)));
@@ -16,8 +17,8 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
 
 AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &other)
     :PaintedWidget(other.parentWidget()
-    ,other.litTexture),litTexture(other.litTexture),unlitTexture(other.unlitTexture),playerTexture(other.playerTexture)
-    ,blockData(other.blockData)
+    ,other.litTexture),litTexture(other.litTexture),unlitTexture(other.unlitTexture),halfLitTexture(other.halfLitTexture)
+    ,playerTexture(other.playerTexture),blockData(other.blockData)
 {
 }
 
@@ -58,8 +59,11 @@ void AbstractGameBlockWidget::onPlayerExited(const Player&)
 
 void AbstractGameBlockWidget::onLightLevelChanged(const AbstractGameBlock::LightLevel& lightlevel)
 {
+    // TODO MAP FUNCTION
     if(lightlevel == AbstractGameBlock::LightLevel::LIT)
         setPixmap(litTexture);
+    else if(lightlevel == AbstractGameBlock::LightLevel::HALF_LIT)
+        setPixmap(halfLitTexture);
     else
         setPixmap(unlitTexture);
 

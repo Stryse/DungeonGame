@@ -19,8 +19,13 @@ public:
                                           const AbstractGameBlock::LightLevel& newValue);
 
 private:
-    void findNeighbours(const QPoint& location,const AbstractGameBlock::LightLevel& oldValue);
 
+    struct Node{
+        QPoint location;
+        int level;
+    };
+
+    void findNeighbours(const QPoint& location,const AbstractGameBlock::LightLevel& oldValue);
     QVector<QPoint> filled;
     QVector<QPoint> neighbourLocs;
     const Map& targetMap;

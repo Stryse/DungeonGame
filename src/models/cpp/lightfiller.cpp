@@ -1,4 +1,5 @@
 #include "lightfiller.h"
+#include <QDebug>
 
 LightFiller::LightFiller(QObject *parent, const Map& targetMap, int depth)
     : QObject(parent)
@@ -13,23 +14,30 @@ void LightFiller::lightFill(const QPoint& location, const AbstractGameBlock::Lig
     for(auto& node : filled)
         targetMap.getGameBlock(node)->setLightLevel(oldValue);
 
-    if(newValue == oldValue)
+    //Return if no change or negative depth
+    if(newValue == oldValue || depth < 0)
         return;
 
     //BFS Fill
-    QQueue<QPoint> nodesToProcess;
-    nodesToProcess.enqueue(location);
+    QQueue<Node> nodesToProcess;
+    nodesToProcess.enqueue({location,0});
     targetMap.getGameBlock(location)->setLightLevel(newValue);
     filled.push_back(location);
 
-    for(int i = 0; i <= depth && nodesToProcess.size() > 0; ++i)
+    // TODO: FIX THIS SHIT, need to calculate distance from loc and bound it
+    while(nodesToProcess.size() > 0)
     {
-        QPoint current = nodesToProcess.dequeue();
-        findNeighbours(current,oldValue);
+        Node current = nodesToProcess.dequeue();
+        if(current.level > depth-1) // depth level will be processed last
+            continue;
+
+        findNeighbours(current.location,oldValue);
         for(auto& neighbour : neighbourLocs)
         {
-            targetMap.getGameBlock(neighbour)->setLightLevel(newValue);
-            nodesToProcess.enqueue(neighbour);
+            targetMap.getGameBlock(neighbour)
+                    ->setLightLevel(static_cast<AbstractGameBlock::LightLevel>(current.level+(int)oldValue+1));
+
+            nodesToProcess.enqueue({neighbour,current.level+1});
             filled.push_back(neighbour);
         }
     }
