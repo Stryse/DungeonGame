@@ -30,12 +30,15 @@ protected:
 private:
     const QPixmap& litTexture;
     const QPixmap& unlitTexture;
+
+    // TODO make it pointer
     QPixmap playerTexture;
     const AbstractGameBlock& blockData;
 
 // TODO: MAKE PRIVATE
 public slots:
     void onPlayerEntered(const Player& player);
+    void onPlayerExited(const Player&);
 
 };
 

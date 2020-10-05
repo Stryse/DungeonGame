@@ -17,11 +17,13 @@ public:
     const Player& getPlayer() const;
     const Map &getActiveMap() const;
 
-
 signals:
     void moved();
 
+public slots:
+    void movePlayer(const Map::Direction& direction);
 private slots:
+    void onUIReady();
 
 private:
 //FIELDS
@@ -33,6 +35,11 @@ private:
     const Player& player;
     QPoint playerCoords;
     Map::Direction playerDirection;
+
+//METHODS
+
+    //Player
+    bool placePlayer(const QPoint& newPos, const QPoint& oldPos);
 
 };
 

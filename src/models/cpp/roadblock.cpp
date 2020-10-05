@@ -26,3 +26,15 @@ QString RoadBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &ligh
         break;
     }
 }
+
+void RoadBlock::DoPlayerEnter(const Player& player)
+{
+    setHasPlayer(true);
+    emit AbstractGameBlock::playerEntered(player);
+}
+
+void RoadBlock::DoPlayerExit(const Player& player)
+{
+    setHasPlayer(false);
+    emit AbstractGameBlock::playerExited(player);
+}

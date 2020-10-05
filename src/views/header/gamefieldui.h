@@ -22,7 +22,8 @@ public:
     explicit GameFieldUI(QWidget *parent = nullptr);
     ~GameFieldUI();
 
-public:
+public: signals:
+    void UIReady();
 
 protected:
     void keyPressEvent(QKeyEvent* event);

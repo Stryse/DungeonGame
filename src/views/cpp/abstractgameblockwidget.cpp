@@ -10,6 +10,7 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(      QWidget *parent,
     ,blockData(blockData)
 {
     connect(&blockData,SIGNAL(playerEntered(const Player&)),this,SLOT(onPlayerEntered(const Player&)));
+    connect(&blockData,SIGNAL(playerExited(const Player&)),this,SLOT(onPlayerExited(const Player&)));
 }
 
 AbstractGameBlockWidget::AbstractGameBlockWidget(const AbstractGameBlockWidget &other)
@@ -65,4 +66,11 @@ void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
 void AbstractGameBlockWidget::onPlayerEntered(const Player& player)
 {
     playerTexture = player.getPortrait();
+    update();
+}
+
+void AbstractGameBlockWidget::onPlayerExited(const Player&)
+{
+    lit();
+    update();
 }

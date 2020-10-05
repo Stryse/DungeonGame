@@ -13,11 +13,23 @@ void Map::loadMapFromFile(const QString &filePath)
         return;
 
     QTextStream stream(&infile);
-    mapName          = stream.readLine();
-    initialCoords    = QPoint(stream.readLine().toInt(),stream.readLine().toInt());
-    initialDirection = static_cast<Direction>(stream.readLine().toInt());
+
+    // READ Map name
+    mapName = stream.readLine();
+
+    // Read Initial Player Coords
+    int coordX; int coordY;
+    stream >> coordX; stream >> coordY;
+    initialCoords = QPoint(coordX,coordY);
+
+    // Read Initial Player Direction
+    int direction; stream >> direction;
+    initialDirection = static_cast<Direction>(direction);
+
+    // Read Map size
     stream >> size;
 
+    //Populating blockFieldData from file
     blockFieldData.resize(size);
     for(int row = 0; row < size; ++row)
     {
@@ -31,6 +43,11 @@ void Map::loadMapFromFile(const QString &filePath)
 
     stream.flush();
     infile.close();
+}
+
+bool Map::isInMapBounds(int row, int col) const
+{
+    return row >= 0 && row < size && col >= 0 && col < size;
 }
 
 Map::Direction Map::getInitialDirection() const

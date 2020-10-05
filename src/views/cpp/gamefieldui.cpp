@@ -18,21 +18,27 @@ GameFieldUI::GameFieldUI(QWidget *parent) :
 
 
     // TODO: change to gamedata
-    Player p(this,*playerPortrait,"Cyan",1,2,3);
+    Player* p = new Player(this,*playerPortrait,"Cyan",1,2,3);
     ui->playerPortraitWidget->setPixmap(*playerPortrait);
-    ui->playerNameLabel->setText(p.getPlayerName());
+    ui->playerNameLabel->setText(p->getPlayerName());
 
 
     // TODO: DELETE object creation here
-    Map m(this);
-    m.loadMapFromFile(":/resources/maps/Map_01.txt");
-    game = new GameLogicModel(this,m,p);
+    Map* m = new Map(this);
+    m->loadMapFromFile(":/resources/maps/Map_01.txt");
+    game = new GameLogicModel(this,*m,*p);
     loadBlockField();
 
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
     setFocus();
 
-    game->getActiveMap().getGameBlock(4,1)->DoPlayerEnter(game->getPlayer());
+    connect(this,SIGNAL(UIReady()),game,SLOT(onUIReady()));
+    connect(ui->navUp,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::UP);});
+    connect(ui->navDown,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::DOWN);});
+    connect(ui->navLeft,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::LEFT);});
+    connect(ui->navRight,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::RIGHT);});
+
+    emit UIReady();
 }
 
 GameFieldUI::~GameFieldUI()

@@ -23,7 +23,7 @@ public:
     Direction getInitialDirection() const;
     AbstractGameBlock* getGameBlock(int row, int col) const;
     void loadMapFromFile(const QString& filePath);
-
+    bool isInMapBounds(int row, int col) const;
     int getSize() const;
 
 

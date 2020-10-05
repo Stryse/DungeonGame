@@ -34,9 +34,3 @@ void AbstractGameBlock::setLightLevel(const LightLevel &value)
 {
     lightLevel = value;
 }
-
-void AbstractGameBlock::DoPlayerEnter(const Player& player)
-{
-    setHasPlayer(true);
-    emit playerEntered(player);
-}

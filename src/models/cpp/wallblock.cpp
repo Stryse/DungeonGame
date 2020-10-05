@@ -26,3 +26,6 @@ QString WallBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &ligh
         break;
     }
 }
+
+void WallBlock::DoPlayerEnter(const Player&){}
+void WallBlock::DoPlayerExit(const Player&){}
