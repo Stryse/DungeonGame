@@ -18,13 +18,12 @@ void LightFiller::lightFill(const QPoint& location, const AbstractGameBlock::Lig
     if(newValue == oldValue || depth < 0)
         return;
 
-    //BFS Fill
+    //===========================================  BFS Fill ========================================//
     QQueue<Node> nodesToProcess;
     nodesToProcess.enqueue({location,0});
     targetMap.getGameBlock(location)->setLightLevel(newValue);
     filled.push_back(location);
 
-    // TODO: FIX THIS SHIT, need to calculate distance from loc and bound it
     while(nodesToProcess.size() > 0)
     {
         Node current = nodesToProcess.dequeue();
@@ -34,11 +33,13 @@ void LightFiller::lightFill(const QPoint& location, const AbstractGameBlock::Lig
         findNeighbours(current.location,oldValue);
         for(auto& neighbour : neighbourLocs)
         {
-            targetMap.getGameBlock(neighbour)
+            targetMap.getGameBlock(neighbour) //Litting with level value texture
                     ->setLightLevel(static_cast<AbstractGameBlock::LightLevel>(current.level+(int)oldValue+1));
 
-            nodesToProcess.enqueue({neighbour,current.level+1});
-            filled.push_back(neighbour);
+            if(!targetMap.getGameBlock(neighbour)->isLightBlocking()) //Process children if not light blocking
+                nodesToProcess.enqueue({neighbour,current.level+1});
+
+            filled.push_back(neighbour); // Register as changed
         }
     }
 }
@@ -46,17 +47,16 @@ void LightFiller::lightFill(const QPoint& location, const AbstractGameBlock::Lig
 void LightFiller::findNeighbours(const QPoint& location, const AbstractGameBlock::LightLevel& oldValue)
 {
     neighbourLocs.clear();
-    QVector<QPoint> directionsBases { {0 , 1},{ 1 , 0} ,
-                                      {0 ,-1},{-1 , 0} ,
-                                      {1 , 1},{ 1 ,-1} ,
-                                      {-1, 1},{-1 ,-1}};
+    QVector<QPoint> directionsVectors { {0 , 1},{ 1 , 0} ,
+                                        {0 ,-1},{-1 , 0} ,
+                                        {1 , 1},{ 1 ,-1} ,
+                                        {-1, 1},{-1 ,-1}};
 
-    for(const auto& direction : directionsBases)
+    for(const auto& direction : directionsVectors)
     {
         QPoint neighbourLoc = location + direction;
         if(targetMap.isInMapBounds(neighbourLoc) // In game space
-           && targetMap.getGameBlock(neighbourLoc)->getLightLevel() == oldValue //Hasn't changed
-           && !targetMap.getGameBlock(neighbourLoc)->isLightBlocking()) // doesn't block light
+           && targetMap.getGameBlock(neighbourLoc)->getLightLevel() == oldValue) //Hasn't already changed
         {
             neighbourLocs.push_back(neighbourLoc);
         }
