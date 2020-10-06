@@ -2,6 +2,7 @@
 #include "roadblock.h"
 #include "wallblock.h"
 #include "endblock.h"
+#include "startblock.h"
 
 AbstractGameBlock::AbstractGameBlock(QObject *parent)
     : QObject(parent),hasPlayer(0),lightLevel(AbstractGameBlock::LightLevel::UNLIT)
@@ -13,6 +14,7 @@ AbstractGameBlock *AbstractGameBlock::create(const QString& type)
     if      (type == 'R') return new RoadBlock();
     else if (type == 'W') return new WallBlock();
     else if (type == 'E') return new EndBlock();
+    else if (type == 'S') return new StartBlock();
 
     return nullptr;
 }

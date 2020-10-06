@@ -11,4 +11,4 @@ R W W W W R R W W W
 W R R R R R W R R W
 W R R W R R R R R W
 R R R W R R W W R W
-R R W W W W W W R W
+S R W W W W W W R W
