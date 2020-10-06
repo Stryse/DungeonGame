@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->newgameBtn,&QPushButton::clicked,this,&MainWindow::openNewGame);
     connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
     connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
+    connect(ui->loadGameBtn,&QPushButton::clicked,this,&MainWindow::openLoadGame);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +35,13 @@ void MainWindow::openCharacterCreation()
     charCreateUI = new CharacterCreation(this);
     charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
     updateViewPort(charCreateUI);
+}
+
+void MainWindow::openLoadGame()
+{
+    GameLoader* gameloader = new GameLoader(this);
+    gameloader->setAttribute(Qt::WA_DeleteOnClose);
+    updateViewPort(gameloader);
 }
 
 void MainWindow::showMenu()

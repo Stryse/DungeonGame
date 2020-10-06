@@ -22,6 +22,7 @@ SOURCES += \
     src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
     src/views/cpp/gamefieldui.cpp \
+    src/views/cpp/gameloader.cpp \
     src/views/cpp/mainwindow.cpp \
     src/views/cpp/paintedwidget.cpp
 
@@ -38,12 +39,14 @@ HEADERS += \
     src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \
+    src/views/header/gameloader.h \
     src/views/header/mainwindow.h \
     src/views/header/paintedwidget.h
 
 FORMS += \
     src/views/ui/character_creation.ui \
     src/views/ui/gamefieldui.ui \
+    src/views/ui/gameloader.ui \
     src/views/ui/mainwindow.ui
 
 UI_DIR = $$PWD/src/views/header/generated

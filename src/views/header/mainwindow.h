@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "charactercreation.h"
 #include "gamefieldui.h"
+#include "gameloader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,7 @@ public:
 private slots:
     void openNewGame();
     void openCharacterCreation();
+    void openLoadGame();
     void showMenu();
     void updateViewPort(QWidget* w);
 private:
