@@ -10,5 +10,8 @@
         <file>resources/img/blocks/wall_unlit.jpg</file>
         <file>resources/img/blocks/road_half_lit.jpg</file>
         <file>resources/img/blocks/wall_half_lit.jpg</file>
+        <file>resources/img/blocks/exit_lit.jpg</file>
+        <file>resources/img/blocks/exit_unlit.jpg</file>
+        <file>resources/img/blocks/exit_half_lit.jpg</file>
     </qresource>
 </RCC>

@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     src/main.cpp \
     src/models/cpp/abstractgameblock.cpp \
+    src/models/cpp/endblock.cpp \
     src/models/cpp/gamelogicmodel.cpp \
     src/models/cpp/lightfiller.cpp \
     src/models/cpp/map.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     src/models/header/abstractgameblock.h \
+    src/models/header/endblock.h \
     src/models/header/gamelogicmodel.h \
     src/models/header/lightfiller.h \
     src/models/header/map.h \
