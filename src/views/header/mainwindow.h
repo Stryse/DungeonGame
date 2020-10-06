@@ -32,6 +32,7 @@ private:
     Ui::MainWindow *ui;
     GameFieldUI* gameUI;
     CharacterCreation* charCreateUI;
+    GameLoader* gameLoader;
 
 };
 #endif // MAINWINDOW_H

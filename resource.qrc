@@ -17,5 +17,6 @@
         <file>resources/img/blocks/trapdoor_lit.jpg</file>
         <file>resources/img/blocks/trapdoor_unlit.jpg</file>
         <file>resources/img/backgrounds/gameLoaderBackground.jpg</file>
+        <file>resources/img/backgrounds/app_icon.png</file>
     </qresource>
 </RCC>

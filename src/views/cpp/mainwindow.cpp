@@ -48,6 +48,7 @@ void MainWindow::showMenu()
 {
     charCreateUI = nullptr;
     gameUI = nullptr;
+    gameLoader = nullptr;
     ui->menuWidget->show();
 }
 

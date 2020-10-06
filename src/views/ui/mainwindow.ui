@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Dungeon Kristóf</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../resource.qrc">
+    <normaloff>:/resources/img/backgrounds/app_icon.png</normaloff>:/resources/img/backgrounds/app_icon.png</iconset>
+  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
@@ -342,6 +346,8 @@ border-radius: 20px;
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
