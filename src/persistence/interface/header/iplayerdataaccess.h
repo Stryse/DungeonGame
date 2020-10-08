@@ -8,6 +8,7 @@
 class IPlayerDataAccess
 {
 public:
+    virtual ~IPlayerDataAccess(){}
     virtual bool isAvailable() const = 0;
     virtual bool loadPlayers(QVector<Player*>& target) const = 0;
     virtual bool loadAvailablePortraits(QVector<QPixmap*>& target) const = 0;

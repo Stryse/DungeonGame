@@ -2,7 +2,7 @@
 #define CHARACTERCREATION_H
 
 #include <QObject>
-#include <QWidget>
+#include <QDialog>
 #include <QStyleOption>
 #include <QPainter>
 
@@ -10,12 +10,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class char_create_widget; }
 QT_END_NAMESPACE
 
-class CharacterCreation : public QWidget
+class CharacterCreation : public QDialog
 {
     Q_OBJECT
 public:
     explicit CharacterCreation(QWidget *parent = nullptr);
-    ~CharacterCreation();
+    virtual ~CharacterCreation() override;
 
 signals:
 

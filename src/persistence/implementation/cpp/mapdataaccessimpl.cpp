@@ -8,6 +8,9 @@ MapDataAccessImpl::MapDataAccessImpl()
     QDir().mkpath(MAPDATA_FOLDER);
 }
 
+MapDataAccessImpl::~MapDataAccessImpl()
+{}
+
 bool MapDataAccessImpl::isAvailable() const
 {
     return true;

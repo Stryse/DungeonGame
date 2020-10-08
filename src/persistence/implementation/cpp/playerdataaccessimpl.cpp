@@ -11,6 +11,9 @@ PlayerDataAccessImpl::PlayerDataAccessImpl()
     QDir().mkpath(PLAYERPORTRAIT_FOLDER);
 }
 
+PlayerDataAccessImpl::~PlayerDataAccessImpl()
+{}
+
 bool PlayerDataAccessImpl::isAvailable() const
 { return true; }
 

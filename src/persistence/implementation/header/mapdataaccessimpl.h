@@ -11,6 +11,7 @@ class MapDataAccessImpl : public IMapDataAccess
 {
 public:
     MapDataAccessImpl();
+    virtual ~MapDataAccessImpl();
 
 public:
     bool isAvailable() const override;

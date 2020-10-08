@@ -1,7 +1,7 @@
 #ifndef GAMELOADER_H
 #define GAMELOADER_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QVector>
 #include <QPaintEvent>
 #include "player.h"
@@ -12,7 +12,7 @@ namespace Ui {
     class GameLoader;
 }
 
-class GameLoader : public QWidget
+class GameLoader : public QDialog
 {
     Q_OBJECT
 

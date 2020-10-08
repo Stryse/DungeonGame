@@ -4,7 +4,7 @@
 #include <QDebug>
 
 GameLoader::GameLoader(QWidget *parent, IPlayerDataAccess* pdataImpl, IMapDataAccess* mapdataImpl) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::GameLoader),
     playerDataAccess(pdataImpl),
     activePlayerInd(0),

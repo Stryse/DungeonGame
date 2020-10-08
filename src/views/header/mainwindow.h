@@ -19,18 +19,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-      signals:
-
 private slots:
     void openCharacterCreation();
     void openLoadGame();
     void showMenu();
-    void updateViewPort(QWidget* w);
+    void updateViewPort(QDialog* w);
 private:
-
     Ui::MainWindow *ui;
-    GameLoader* gameLoader;
-    CharacterCreation* charCreateUI;
-
 };
 #endif // MAINWINDOW_H

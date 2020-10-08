@@ -4,7 +4,7 @@
 #include <QDebug>
 
 CharacterCreation::CharacterCreation(QWidget *parent)
-    : QWidget(parent)
+    : QDialog(parent)
     , ui(new Ui::char_create_widget)
 {
     ui->setupUi(this);

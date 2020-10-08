@@ -15,6 +15,8 @@ class PlayerDataAccessImpl : public IPlayerDataAccess
 {
 public:
     PlayerDataAccessImpl();
+    virtual ~PlayerDataAccessImpl();
+
     bool isAvailable() const override;
     bool loadPlayers(QVector<Player*>& target) const override;
     bool loadAvailablePortraits(QVector<QPixmap*>& target) const override;
