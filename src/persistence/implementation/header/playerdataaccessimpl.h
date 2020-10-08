@@ -8,16 +8,19 @@
 
 #include <QDir>
 #include <QString>
-#include "playerdataaccess.h"
+#include "iplayerdataaccess.h"
 
 
-class PlayerDataAccessImpl : public PlayerDataAccess
+class PlayerDataAccessImpl : public IPlayerDataAccess
 {
 public:
     PlayerDataAccessImpl();
     bool isAvailable() const override;
     bool loadPlayers(QVector<Player*>& target) const override;
-    bool laodAvailablePortraits(QVector<QPixmap*>& target) const override;
+    bool loadAvailablePortraits(QVector<QPixmap*>& target) const override;
+
+private:
+    void loadDefaultPlayer(QVector<Player*>& target) const;
 };
 
 #endif // PLAYERDATAACCESSIMPL_H

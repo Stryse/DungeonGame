@@ -19,6 +19,7 @@ SOURCES += \
     src/models/cpp/roadblock.cpp \
     src/models/cpp/startblock.cpp \
     src/models/cpp/wallblock.cpp \
+    src/persistence/implementation/cpp/mapdataaccessimpl.cpp \
     src/persistence/implementation/cpp/playerdataaccessimpl.cpp \
     src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
@@ -37,8 +38,10 @@ HEADERS += \
     src/models/header/roadblock.h \
     src/models/header/startblock.h \
     src/models/header/wallblock.h \
+    src/persistence/implementation/header/mapdataaccessimpl.h \
     src/persistence/implementation/header/playerdataaccessimpl.h \
-    src/persistence/interface/header/playerdataaccess.h \
+    src/persistence/interface/header/imapdataaccess.h \
+    src/persistence/interface/header/iplayerdataaccess.h \
     src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \

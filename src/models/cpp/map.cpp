@@ -2,47 +2,20 @@
 #include <QFile>
 #include <QTextStream>
 
-Map::Map(QObject *parent) : QObject(parent)
+
+Map::Map()
+{}
+
+Map::Map(const QString& mapName,
+         const QVector<QVector<AbstractGameBlock*>>& dataGrid,
+         const QPoint& initCoords,int direction)
+    :mapName(mapName)
+    ,blockFieldData(dataGrid)
+    ,initialCoords(initCoords)
+    ,initialDirection(static_cast<Map::Direction>(direction))
+    ,size(blockFieldData.size())
 {
-}
 
-void Map::loadMapFromFile(const QString &filePath)
-{
-    QFile infile(filePath);
-    if(!infile.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-
-    QTextStream stream(&infile);
-
-    // READ Map name
-    mapName = stream.readLine();
-
-    // Read Initial Player Coords
-    int coordX; int coordY;
-    stream >> coordX; stream >> coordY;
-    initialCoords = QPoint(coordX,coordY);
-
-    // Read Initial Player Direction
-    int direction; stream >> direction;
-    initialDirection = static_cast<Direction>(direction);
-
-    // Read Map size
-    stream >> size;
-
-    //Populating blockFieldData from file
-    blockFieldData.resize(size);
-    for(int row = 0; row < size; ++row)
-    {
-        blockFieldData[row].resize(size);
-        for(int col = 0; col < size; ++col)
-        {
-            QString type; stream >> type;
-            blockFieldData[row][col] = (AbstractGameBlock::create(type));
-        }
-    }
-
-    stream.flush();
-    infile.close();
 }
 
 bool Map::isInMapBounds(int row, int col) const

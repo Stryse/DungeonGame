@@ -22,7 +22,6 @@ public:
       signals:
 
 private slots:
-    void openNewGame();
     void openCharacterCreation();
     void openLoadGame();
     void showMenu();
@@ -30,9 +29,8 @@ private slots:
 private:
 
     Ui::MainWindow *ui;
-    GameFieldUI* gameUI;
-    CharacterCreation* charCreateUI;
     GameLoader* gameLoader;
+    CharacterCreation* charCreateUI;
 
 };
 #endif // MAINWINDOW_H

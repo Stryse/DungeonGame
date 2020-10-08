@@ -19,7 +19,7 @@ class GameFieldUI : public QWidget
 
 public:
     //CTOR
-    explicit GameFieldUI(QWidget *parent = nullptr);
+    explicit GameFieldUI(QWidget *parent, GameLogicModel* game);
     ~GameFieldUI();
 
 public: signals:

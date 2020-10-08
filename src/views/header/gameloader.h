@@ -5,9 +5,9 @@
 #include <QVector>
 #include <QPaintEvent>
 #include "player.h"
-#include "playerdataaccess.h"
+#include "iplayerdataaccess.h"
+#include "imapdataaccess.h"
 
-class MapDataAccess;
 namespace Ui {
     class GameLoader;
 }
@@ -17,7 +17,7 @@ class GameLoader : public QWidget
     Q_OBJECT
 
 public:
-    explicit GameLoader(QWidget *parent,PlayerDataAccess* pdataImpl, MapDataAccess* mapdataImpl);
+    explicit GameLoader(QWidget *parent,IPlayerDataAccess* pdataImpl, IMapDataAccess* mapdataImpl);
     ~GameLoader();
 
 protected:
@@ -25,11 +25,14 @@ protected:
 
 private:
     Ui::GameLoader* ui;
+    IPlayerDataAccess* playerDataAccess;
     QVector<Player*> players;
     int activePlayerInd;
 
-    PlayerDataAccess* playerDataAccess;
-    MapDataAccess* mapDataAccess;
+    IMapDataAccess* mapDataAccess;
+    QVector<Map*> maps;
+
+    void populateMapTable();
 
 private slots:
     void setSelectedPlayer(int playerInd);

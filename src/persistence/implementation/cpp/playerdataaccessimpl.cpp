@@ -16,29 +16,24 @@ bool PlayerDataAccessImpl::isAvailable() const
 
 bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
 {
-    //Adding a default player
-    // TODO check nullptr decide who's owner
-    Player* defaultPlayer = new Player(nullptr,QPixmap(DEFAULT_PLAYER_PORTRAIT),DEFAULT_PLAYER_NAME);
-    target.push_back(defaultPlayer);
+    loadDefaultPlayer(target);
 
     QDir playerDataDir(QString(PLAYERDATA_FOLDER));
     if(!playerDataDir.exists()){ qDebug() << "Player data dir not found!"; return false; }
-
-    QDir playerPortraitDir(PLAYERPORTRAIT_FOLDER);
-    if(!playerPortraitDir.exists()){ qDebug() << "Player portrait dir not found"; return false; }
 
     //Read PlayerData
     QStringList playerDataBuffer = playerDataDir.entryList(QStringList() << "*.txt",QDir::Files);
     for(auto& filename : playerDataBuffer)
     {
         qDebug() << "Found PlayerData: "<< filename;
-
+        //Opening
         QFile file(playerDataDir.filePath(filename));
-        if(!file.open(QFile::ReadOnly)){
+        if(!file.open(QFile::ReadOnly | QIODevice::Text)){
             qDebug() << "Error opening file: " << file.fileName();
             return false;
         }
 
+        //Reading
         QTextStream stream(&file);
         QString readPlayerName;     stream >> readPlayerName;
         int readStrength;           stream >> readStrength;
@@ -47,8 +42,10 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
         QString readPlayerPortrait; stream >> readPlayerPortrait;
         readPlayerPortrait = PLAYERPORTRAIT_FOLDER + readPlayerPortrait;
 
+        //Populating
         target.push_back(new Player(nullptr,QPixmap(readPlayerPortrait),
                                     readPlayerName,readStrength,readIntellect,readStamina));
+        //Closing resources
         stream.flush();
         file.close();
 
@@ -57,7 +54,15 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
     return true;
 }
 
-bool PlayerDataAccessImpl::laodAvailablePortraits(QVector<QPixmap*>& target) const
+bool PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap*>& target) const
 {
     return true;
+}
+
+void PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
+{
+    //Adding a default player
+    // TODO check nullptr decide who's owner
+    Player* defaultPlayer = new Player(nullptr,QPixmap(DEFAULT_PLAYER_PORTRAIT),DEFAULT_PLAYER_NAME);
+    target.push_back(defaultPlayer);
 }

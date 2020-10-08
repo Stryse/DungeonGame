@@ -239,13 +239,13 @@ border-bottom: 1px solid white;
     <bool>false</bool>
    </property>
    <property name="rowCount">
-    <number>15</number>
+    <number>0</number>
    </property>
    <property name="columnCount">
-    <number>6</number>
+    <number>3</number>
    </property>
    <attribute name="horizontalHeaderVisible">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderCascadingSectionResizes">
     <bool>false</bool>
@@ -268,21 +268,6 @@ border-bottom: 1px solid white;
    <attribute name="verticalHeaderStretchLastSection">
     <bool>false</bool>
    </attribute>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
-   <row/>
    <column>
     <property name="text">
      <string>Pályanév</string>
@@ -298,39 +283,6 @@ border-bottom: 1px solid white;
      <string>Nehézség</string>
     </property>
    </column>
-   <column/>
-   <column/>
-   <column/>
-   <item row="0" column="0">
-    <property name="text">
-     <string>Első pálya</string>
-    </property>
-   </item>
-   <item row="0" column="1">
-    <property name="text">
-     <string>12x12</string>
-    </property>
-   </item>
-   <item row="0" column="2">
-    <property name="text">
-     <string>Könnyű</string>
-    </property>
-   </item>
-   <item row="1" column="0">
-    <property name="text">
-     <string>Második pálya</string>
-    </property>
-   </item>
-   <item row="1" column="1">
-    <property name="text">
-     <string>15x15</string>
-    </property>
-   </item>
-   <item row="1" column="2">
-    <property name="text">
-     <string>Közepes</string>
-    </property>
-   </item>
   </widget>
   <widget class="QPushButton" name="nextBtn">
    <property name="geometry">

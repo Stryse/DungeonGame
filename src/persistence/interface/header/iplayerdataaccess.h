@@ -5,13 +5,12 @@
 #include <QPixmap>
 #include "player.h"
 
-class PlayerDataAccess
+class IPlayerDataAccess
 {
 public:
     virtual bool isAvailable() const = 0;
     virtual bool loadPlayers(QVector<Player*>& target) const = 0;
-    virtual bool laodAvailablePortraits(QVector<QPixmap*>& target) const = 0;
-
+    virtual bool loadAvailablePortraits(QVector<QPixmap*>& target) const = 0;
 };
 
 #endif // PLAYERDATAACCESS_H

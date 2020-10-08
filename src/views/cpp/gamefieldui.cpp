@@ -8,30 +8,21 @@
 #include <QKeyEvent>
 #include <QDebug>
 
-GameFieldUI::GameFieldUI(QWidget *parent) :
+GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
     QWidget(parent),
-    ui(new Ui::GameFieldUI)
+    ui(new Ui::GameFieldUI),
+    game(game)
 {
     ui->setupUi(this);
 
-    playerPortrait = new QPixmap(":/resources/img/player/amonguscyan.png");
-
-
-    // TODO: change to gamedata
-    Player* p = new Player(this,*playerPortrait,"Cyan",1,2,3);
-    ui->playerPortraitWidget->setPixmap(*playerPortrait);
-    ui->playerNameLabel->setText(p->getPlayerName());
-
-
-    // TODO: DELETE object creation here
-    Map* m = new Map(this);
-    m->loadMapFromFile(":/resources/maps/Map_01.txt");
-    game = new GameLogicModel(this,*m,*p);
-    loadBlockField();
-
+    // UPDATE UI WITH GAME DATA
+    ui->playerPortraitWidget->setPixmap(game->getPlayer().getPortrait());
+    ui->playerNameLabel->setText(game->getPlayer().getPlayerName());
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
+    loadBlockField();
     setFocus();
 
+    // CONNECT UI EVENTS TO GAME LOGIC
     connect(this,SIGNAL(UIReady()),game,SLOT(onUIReady()));
     connect(ui->navUp,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::UP);});
     connect(ui->navDown,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::DOWN);});

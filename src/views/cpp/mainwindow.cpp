@@ -1,15 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "playerdataaccessimpl.h"
+#include "mapdataaccessimpl.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , gameUI(nullptr)
     , charCreateUI(nullptr)
 {
     ui->setupUi(this);
-    connect(ui->newgameBtn,&QPushButton::clicked,this,&MainWindow::openNewGame);
+    //connect(ui->newgameBtn,&QPushButton::clicked,this,&MainWindow::openNewGame);
     connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
     connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
     connect(ui->loadGameBtn,&QPushButton::clicked,this,&MainWindow::openLoadGame);
@@ -17,17 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete gameLoader;
     delete charCreateUI;
-    delete gameUI;
     delete ui;
-}
-
-void MainWindow::openNewGame()
-{
-    //Open Character creation
-    gameUI = new GameFieldUI(this);
-    gameUI->setAttribute(Qt::WA_DeleteOnClose);
-    updateViewPort(gameUI);
 }
 
 void MainWindow::openCharacterCreation()
@@ -40,15 +32,14 @@ void MainWindow::openCharacterCreation()
 
 void MainWindow::openLoadGame()
 {
-    GameLoader* gameloader = new GameLoader(this,new PlayerDataAccessImpl(),nullptr);
-    gameloader->setAttribute(Qt::WA_DeleteOnClose);
-    updateViewPort(gameloader);
+    gameLoader = new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl());
+    gameLoader->setAttribute(Qt::WA_DeleteOnClose);
+    updateViewPort(gameLoader);
 }
 
 void MainWindow::showMenu()
 {
     charCreateUI = nullptr;
-    gameUI = nullptr;
     gameLoader = nullptr;
     ui->menuWidget->show();
 }
