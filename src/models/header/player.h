@@ -12,6 +12,7 @@ public:
     //CTOR
     explicit Player(QObject *parent,const QPixmap& portrait,
                     const QString& pName, int strength = 1, int intellct = 1, int stamina = 1);
+    ~Player();
 
 public:
     const QPixmap& getPortrait() const;
@@ -22,7 +23,7 @@ signals:
 
 private:
 
-    const QPixmap& portrait;
+    const QPixmap portrait;
     QString playerName;
     int strength;
     int intellect;

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "playerdataaccessimpl.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,7 +40,7 @@ void MainWindow::openCharacterCreation()
 
 void MainWindow::openLoadGame()
 {
-    GameLoader* gameloader = new GameLoader(this);
+    GameLoader* gameloader = new GameLoader(this,new PlayerDataAccessImpl(),nullptr);
     gameloader->setAttribute(Qt::WA_DeleteOnClose);
     updateViewPort(gameloader);
 }

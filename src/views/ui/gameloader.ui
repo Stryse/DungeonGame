@@ -245,7 +245,7 @@ border-bottom: 1px solid white;
     <number>6</number>
    </property>
    <attribute name="horizontalHeaderVisible">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderCascadingSectionResizes">
     <bool>false</bool>
@@ -436,7 +436,10 @@ border-radius: 20px;
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelBtn">
+  <widget class="QPushButton" name="playBtn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -485,6 +488,10 @@ background-color: rgba(89, 22, 9,200);
 color :  #eef205;
 border: 4px solid #eef205;
 border-radius: 20px;
+}
+
+QPushButton:disabled[flat=true]{
+background-color: rgba(74, 68, 68,170);
 }</string>
    </property>
    <property name="text">
@@ -548,7 +555,7 @@ color: #dfdfdf;
     <string>PlayerName</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelBtn_2">
+  <widget class="QPushButton" name="cancelBtn">
    <property name="geometry">
     <rect>
      <x>560</x>

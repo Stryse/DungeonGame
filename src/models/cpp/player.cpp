@@ -9,6 +9,10 @@ Player::Player(QObject *parent,const QPixmap& portrait,
 
 }
 
+Player::~Player()
+{
+}
+
 QString Player::getPlayerName() const
 {
     return playerName;

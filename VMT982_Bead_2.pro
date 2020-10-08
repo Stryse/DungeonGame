@@ -19,6 +19,7 @@ SOURCES += \
     src/models/cpp/roadblock.cpp \
     src/models/cpp/startblock.cpp \
     src/models/cpp/wallblock.cpp \
+    src/persistence/implementation/cpp/playerdataaccessimpl.cpp \
     src/views/cpp/abstractgameblockwidget.cpp \
     src/views/cpp/charactercreation.cpp \
     src/views/cpp/gamefieldui.cpp \
@@ -36,6 +37,8 @@ HEADERS += \
     src/models/header/roadblock.h \
     src/models/header/startblock.h \
     src/models/header/wallblock.h \
+    src/persistence/implementation/header/playerdataaccessimpl.h \
+    src/persistence/interface/header/playerdataaccess.h \
     src/views/header/abstractgameblockwidget.h \
     src/views/header/charactercreation.h \
     src/views/header/gamefieldui.h \
@@ -55,7 +58,9 @@ INCLUDEPATH += \
     src/views/header \
     src/views/header/generated \
     src/models/header \
-    src/persistence/header
+    src/persistence/header \
+    src/persistence/interface/header/ \
+    src/persistence/implementation/header/
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
