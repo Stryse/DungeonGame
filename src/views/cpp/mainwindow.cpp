@@ -8,10 +8,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect(ui->newgameBtn,&QPushButton::clicked,this,&MainWindow::openNewGame);
-    connect(ui->charcreateBtn,&QPushButton::clicked,this,&MainWindow::openCharacterCreation);
+    connect(ui->newgameBtn,&QPushButton::clicked,this,[=](){
+            changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
+    });
+    connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
+            changeWindow(new CharacterCreation(this));
+    });
     connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
-    connect(ui->loadGameBtn,&QPushButton::clicked,this,&MainWindow::openLoadGame);
+
+    connect(ui->loadGameBtn,&QPushButton::clicked,this,[=](){
+            changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
+    });
 }
 
 MainWindow::~MainWindow()
@@ -19,34 +26,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::openCharacterCreation()
+void MainWindow::changeWindow(QDialog* window)
 {
-    CharacterCreation* charCreateUI = new CharacterCreation(this);
-    charCreateUI->setAttribute(Qt::WA_DeleteOnClose);
-    updateViewPort(charCreateUI);
-}
-
-void MainWindow::openLoadGame()
-{
-    GameLoader* gameLoader = new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl());
-    gameLoader->setAttribute(Qt::WA_DeleteOnClose);
-    updateViewPort(gameLoader);
-}
-
-void MainWindow::showMenu()
-{
-    ui->menuWidget->show();
-}
-
-void MainWindow::updateViewPort(QDialog *w)
-{
+    window->setAttribute(Qt::WA_DeleteOnClose);
     //Close Menu
     ui->menuWidget->hide();
 
     //Add Widget
-    ui->viewPortLayout->addWidget(w,1,1,Qt::AlignCenter);
+    ui->viewPortLayout->addWidget(window,1,1,Qt::AlignCenter);
 
     // Back to menu if destroyed, deallocate
-    connect(w,&QWidget::destroyed,this,&MainWindow::showMenu);
-    w->exec();
+    connect(window,&QWidget::destroyed,this,[=](){ ui->menuWidget->show(); });
+    window->exec();
 }
