@@ -245,7 +245,7 @@ border-bottom: 1px solid white;
     <number>6</number>
    </property>
    <attribute name="horizontalHeaderVisible">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderCascadingSectionResizes">
     <bool>false</bool>
@@ -380,6 +380,9 @@ border-radius: 20px;
    <property name="text">
     <string>&gt;</string>
    </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
    <property name="flat">
     <bool>true</bool>
    </property>
@@ -431,6 +434,9 @@ border-radius: 20px;
    </property>
    <property name="text">
     <string>&lt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
    </property>
    <property name="flat">
     <bool>true</bool>
@@ -497,6 +503,9 @@ background-color: rgba(74, 68, 68,170);
    <property name="text">
     <string>Play</string>
    </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
    <property name="flat">
     <bool>true</bool>
    </property>
@@ -533,11 +542,17 @@ border-radius: 10px;
   <widget class="QLabel" name="playerNameLabel">
    <property name="geometry">
     <rect>
-     <x>900</x>
-     <y>180</y>
-     <width>145</width>
+     <x>880</x>
+     <y>190</y>
+     <width>180</width>
      <height>29</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>180</width>
+     <height>0</height>
+    </size>
    </property>
    <property name="font">
     <font>
@@ -553,6 +568,9 @@ color: #dfdfdf;
    </property>
    <property name="text">
     <string>PlayerName</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="cancelBtn">
@@ -608,6 +626,9 @@ border-radius: 20px;
    </property>
    <property name="text">
     <string>cancel</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
    <property name="flat">
     <bool>true</bool>
