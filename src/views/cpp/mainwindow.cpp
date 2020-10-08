@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include "gameloader.h"
+#include "charactercreation.h"
 #include "ui_mainwindow.h"
 #include "playerdataaccessimpl.h"
 #include "mapdataaccessimpl.h"
@@ -8,17 +10,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Connect New Game
     connect(ui->newgameBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
     });
+    // Connect Character Creation
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new CharacterCreation(this));
     });
-    connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
-
+    // Connect Load Game
     connect(ui->loadGameBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
     });
+    // Connect Quit
+    connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
 }
 
 MainWindow::~MainWindow()

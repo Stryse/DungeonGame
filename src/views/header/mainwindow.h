@@ -2,9 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "charactercreation.h"
-#include "gamefieldui.h"
-#include "gameloader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
