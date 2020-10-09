@@ -4,15 +4,21 @@
 #include <QDebug>
 #include <QStyleOption>
 #include <QPainter>
+#include "playerdataaccessimpl.h"
 
-CharacterCreation::CharacterCreation(QWidget *parent, IPlayerDataAccess* playerDataAccess)
+CharacterCreation::CharacterCreation(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::char_create_widget)
-    , playerDataAccess(playerDataAccess)
+    , charCreateModel(new CharacterCreationModel(this, new PlayerDataAccessImpl()))
 {
     ui->setupUi(this);
-    playerDataAccess->loadAvailablePortraits(playerPortraits);
+
+    //Load Portraits
+    charCreateModel->getPlayerDataAccess()->loadAvailablePortraits(playerPortraits);
+
+    //Display player properties
     ui->portrait->setPixmap(playerPortraits[0]);
+    displayPlayerProperties();
 
     connect(ui->cancelBtn,&QPushButton::clicked,this,&QWidget::close);
     qDebug() << "Character creation opened";
@@ -30,4 +36,11 @@ void CharacterCreation::paintEvent(QPaintEvent *)
     opt.init(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void CharacterCreation::displayPlayerProperties()
+{
+    ui->strengthLabel->setText(QString::number(charCreateModel->getPlayerStrength()));
+    ui->intellectLabel->setText(QString::number(charCreateModel->getPlayerIntellect()));
+    ui->staminaLabel->setText(QString::number(charCreateModel->getPlayerStamina()));
 }

@@ -78,7 +78,7 @@ color: #dfdfdf;
            <number>25</number>
           </property>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="SkillpointsLabel">
             <property name="font">
              <font>
               <pointsize>22</pointsize>
@@ -92,7 +92,7 @@ color: #dfdfdf;
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="Strength">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -110,9 +110,9 @@ color: #dfdfdf;
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QHBoxLayout" name="strengthInputLayout">
             <item>
-             <widget class="QPushButton" name="nextBtn_2">
+             <widget class="QPushButton" name="decStrength">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -158,7 +158,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="strengthLabel">
               <property name="font">
                <font>
                 <pointsize>20</pointsize>
@@ -175,7 +175,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="prevBtn_2">
+             <widget class="QPushButton" name="incStrength">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -223,7 +223,7 @@ border-radius: 20px;
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="Intellect">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -241,9 +241,9 @@ border-radius: 20px;
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout" name="intellctInputLayout">
             <item>
-             <widget class="QPushButton" name="nextBtn_3">
+             <widget class="QPushButton" name="decIntellct">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -289,7 +289,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="intellectLabel">
               <property name="font">
                <font>
                 <pointsize>20</pointsize>
@@ -306,7 +306,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="prevBtn_3">
+             <widget class="QPushButton" name="incIntellct">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -354,7 +354,7 @@ border-radius: 20px;
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="Stamina">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -372,9 +372,9 @@ border-radius: 20px;
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="staminaInputLayout">
             <item>
-             <widget class="QPushButton" name="nextBtn_4">
+             <widget class="QPushButton" name="decStamina">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -420,7 +420,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_7">
+             <widget class="QLabel" name="staminaLabel">
               <property name="font">
                <font>
                 <pointsize>20</pointsize>
@@ -437,7 +437,7 @@ border-radius: 20px;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="prevBtn_4">
+             <widget class="QPushButton" name="incStamina">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -600,6 +600,9 @@ border-radius: 20px;
               <property name="text">
                <string>&lt;</string>
               </property>
+              <property name="shortcut">
+               <string>Left</string>
+              </property>
               <property name="flat">
                <bool>true</bool>
               </property>
@@ -645,6 +648,9 @@ border-radius: 20px;
               </property>
               <property name="text">
                <string>&gt;</string>
+              </property>
+              <property name="shortcut">
+               <string>Right</string>
               </property>
               <property name="flat">
                <bool>true</bool>
@@ -722,6 +728,9 @@ border-radius: 20px;
           </property>
           <property name="text">
            <string>Create</string>
+          </property>
+          <property name="shortcut">
+           <string>Return</string>
           </property>
           <property name="flat">
            <bool>true</bool>
