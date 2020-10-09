@@ -19,9 +19,13 @@ public:
     PlayerDataAccessImpl();
     virtual ~PlayerDataAccessImpl();
 
+    //Input
     bool isAvailable() const override;
     bool loadPlayers(QVector<Player*>& target) const override;
     QStringList loadAvailablePortraits(QVector<QPixmap>& target) const override;
+
+    //Output
+    bool savePlayer(const Player& player) const override;
 
 private:
     bool loadDefaultPlayer(QVector<Player*>& target) const;

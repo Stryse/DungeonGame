@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new CharacterCreation(this));
     });
-    // Connect Load Game
+    // Connect Load Game //TODO new game doesn't work here
     connect(ui->loadGameBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
     });

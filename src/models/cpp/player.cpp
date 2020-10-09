@@ -13,7 +13,7 @@ Player::~Player()
 {
 }
 
-QString Player::getPlayerName() const
+const QString& Player::getPlayerName() const
 {
     return playerName;
 }
@@ -21,6 +21,16 @@ QString Player::getPlayerName() const
 int Player::getStrength() const
 {
     return strength;
+}
+
+int Player::getIntellect() const
+{
+    return intellect;
+}
+
+int Player::getStamina() const
+{
+    return stamina;
 }
 
 const QString& Player::getPortrait() const

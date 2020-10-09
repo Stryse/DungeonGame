@@ -1,10 +1,12 @@
 #include "charactercreationmodel.h"
+#include <QDebug>
 
 CharacterCreationModel::CharacterCreationModel(QObject *parent,IPlayerDataAccess* playerDataAccess)
     : QObject(parent)
+    , maxSkillPoints(8)
     , playerStrength(0)
     , playerIntellect(0)
-    , playerStamina(0)
+    , playerStamina(1)
     , playerDataAccess(playerDataAccess)
 {
 
@@ -22,25 +24,46 @@ void CharacterCreationModel::setPlayerPortraitPath(const QString& value)
     playerPortraitPath = value;
 }
 
-void CharacterCreationModel::setPlayerStrength(int value)
+int CharacterCreationModel::addPointStrength(int value)
 {
-    playerStrength = value;
+    if(maxSkillPoints+value > 0 && playerStrength+value >= 0)
+    {
+        playerStrength += value;
+        qDebug() << playerStrength;
+        maxSkillPoints -= value;
+    }
+    return playerStrength;
 }
 
-void CharacterCreationModel::setPlayerIntellect(int value)
+int CharacterCreationModel::addPointIntellect(int value)
 {
-    playerIntellect = value;
+    if(maxSkillPoints+value > 0 && playerIntellect+value >= 0)
+    {
+        playerIntellect += value;
+        maxSkillPoints  -= value;
+    }
+    return playerIntellect;
 }
 
-void CharacterCreationModel::setPlayerStamina(int value)
+int CharacterCreationModel::addPointStamina(int value)
 {
-    playerStamina = value;
+    if(maxSkillPoints+value > 0 && playerStamina+value >= 1)
+    {
+        playerStamina  += value;
+        maxSkillPoints -= value;
+    }
+    return playerStamina;
 }
 
 //GETTER
 IPlayerDataAccess* CharacterCreationModel::getPlayerDataAccess() const
 {
     return playerDataAccess;
+}
+
+int CharacterCreationModel::getMaxSkillPoints() const
+{
+    return maxSkillPoints;
 }
 
 QString CharacterCreationModel::getPlayerName() const

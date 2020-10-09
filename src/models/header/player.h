@@ -18,8 +18,12 @@ public:
 
 public:
     const QString& getPortrait() const;
-    QString getPlayerName() const;
+    const QString& getPlayerName() const;
     int getStrength() const;
+    int getIntellect() const;
+    int getStamina() const;
+
+
 
 signals:
 

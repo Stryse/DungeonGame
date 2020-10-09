@@ -65,6 +65,28 @@ QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap>& targe
     return portraitPaths;
 }
 
+bool PlayerDataAccessImpl::savePlayer(const Player& player) const
+{
+    QFile saveFile(QString("%0.txt").arg(player.getPlayerName()));
+    if (!saveFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Couldn't save player to" << saveFile.fileName();
+        return false;
+    }
+
+    QTextStream stream(&saveFile);
+    stream << player.getPlayerName() << '\n';
+    stream << player.getStrength()   << '\n';
+    stream << player.getIntellect()  << '\n';
+    stream << player.getStamina()    << '\n';
+    stream << player.getPortrait();
+
+    stream.flush();
+    saveFile.close();
+
+    return true;
+}
+
 bool PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
 {
     Player* defaultPlayer = new Player(nullptr,DEFAULT_PLAYER_PORTRAIT,DEFAULT_PLAYER_NAME);

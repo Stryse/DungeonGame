@@ -16,16 +16,21 @@ public:
     int getPlayerStrength() const;
     int getPlayerIntellect() const;
     int getPlayerStamina() const;
+    int getMaxSkillPoints() const;
 
     //SETTER
     void setPlayerName(const QString& value);
     void setPlayerPortraitPath(const QString& value);
-    void setPlayerStrength(int value);
-    void setPlayerIntellect(int value);
-    void setPlayerStamina(int value);
+    int addPointStrength(int value);
+    int addPointIntellect(int value);
+    int addPointStamina(int value);
     IPlayerDataAccess* getPlayerDataAccess() const;
 
+
 private:
+
+    //Character creation
+    int maxSkillPoints;
 
     //Player
     QString playerName;
