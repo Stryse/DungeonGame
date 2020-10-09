@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTime>
+#include <QTimer>
 
 #include "player.h"
 #include "map.h"
@@ -18,30 +19,36 @@ public:
     explicit GameLogicModel(QObject *parent,const Map& map,const Player& player);
 
 public:
+    //Getters
     const Player& getPlayer() const;
     const Map &getActiveMap() const;
-    QPoint getPlayerCoords() const;
 
 signals:
     void moved();
+    void timeTicked(const QTime& time);
+    void gameEnded (const QTime& time);
 
 public slots:
+    void startGame();
     void movePlayer(const Map::Direction& direction);
+    void onPlayerEntered();
+    void onPlayerExited();
 
 private:
 //FIELDS
+    //Game
+    bool   started;
+    QTimer gameTimer;
+    QTime  gameTime;
 
     //Map
     const Map& activeMap; // MIGHT NEED POINTER
     LightFiller lightFiller;
+
     //Player
     const Player& player;
     QPoint playerCoords;
     Map::Direction playerDirection;
-
-    //Game
-    bool started;
-    QTime gameTime;
 
 //METHODS
 
@@ -49,7 +56,8 @@ private:
     bool placePlayer(const QPoint& newPos, const QPoint& oldPos);
 
     //Game
-    void StartGame();
+    void connectBlockEvents();
+    void endGame();
 
 };
 

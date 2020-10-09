@@ -15,10 +15,3 @@ void EndBlock::PopulateTextures()
     textures[LightLevel::LIT]      = ":/resources/img/blocks/exit_lit.jpg";
     textures[LightLevel::HALF_LIT] = ":/resources/img/blocks/exit_half_lit.jpg";
 }
-
-void EndBlock::DoPlayerEnter(const Player& player)
-{
-    RoadBlock::DoPlayerEnter(player);
-    emit endBlockEntered();
-    qDebug() << "WIN";
-}

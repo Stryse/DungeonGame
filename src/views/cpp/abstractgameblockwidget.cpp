@@ -20,6 +20,10 @@ AbstractGameBlockWidget::AbstractGameBlockWidget(QWidget *parent, const Abstract
     //LIGHT LEVEL CHANGED EVENT
     connect(&blockData,SIGNAL(lightLevelChanged(const AbstractGameBlock::LightLevel&)),
                   this,SLOT(onLightLevelChanged(const AbstractGameBlock::LightLevel&)));
+
+    //UPDATE TEXTURES EVENT
+    connect(&blockData,SIGNAL(updateTextures()),
+                  this,SLOT(loadTextures()));
 }
 
 

@@ -44,6 +44,7 @@ signals:
     void playerEntered(const Player& player);
     void playerExited (const Player& player);
     void lightLevelChanged(const AbstractGameBlock::LightLevel& lightLevel);
+    void updateTextures();
 
 private:
     bool hasPlayer;

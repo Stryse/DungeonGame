@@ -23,9 +23,9 @@ public slots:
     void onPlayerEntered(const Player& player);
     void onPlayerExited(const Player&);
     void onLightLevelChanged(const AbstractGameBlock::LightLevel& lightlevel);
+    void loadTextures();
 
 protected:
-    void loadTextures();
     void paintEvent(QPaintEvent* event) override;
 };
 

@@ -4,15 +4,15 @@
 #include <QDebug>
 #include <QStyleOption>
 #include <QPainter>
-#include "playerdataaccessimpl.h"
 
-CharacterCreation::CharacterCreation(QWidget *parent)
+CharacterCreation::CharacterCreation(QWidget *parent, IPlayerDataAccess* playerDataAccess)
     : QDialog(parent)
     , ui(new Ui::char_create_widget)
+    , playerDataAccess(playerDataAccess)
 {
     ui->setupUi(this);
-    QScopedPointer<IPlayerDataAccess> pDataAccess(new PlayerDataAccessImpl());
-
+    playerDataAccess->loadAvailablePortraits(playerPortraits);
+    ui->portrait->setPixmap(playerPortraits[0]);
 
     connect(ui->cancelBtn,&QPushButton::clicked,this,&QWidget::close);
     qDebug() << "Character creation opened";

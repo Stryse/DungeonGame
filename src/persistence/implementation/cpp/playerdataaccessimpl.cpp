@@ -60,13 +60,29 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
 QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap>& target) const
 {
     QStringList portraitPaths;
+    loadPortraitsFromFolder(target,PLAYERPORTRAIT_FOLDER);
+    loadPortraitsFromFolder(target,INBUILDS_PORTRAITS);
     return portraitPaths;
 }
 
-void PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
+bool PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
 {
-    //Adding a default player
-    // TODO check nullptr decide who's owner
     Player* defaultPlayer = new Player(nullptr,DEFAULT_PLAYER_PORTRAIT,DEFAULT_PLAYER_NAME);
     target.push_back(defaultPlayer);
+
+    return defaultPlayer != nullptr;
+}
+
+bool PlayerDataAccessImpl::loadPortraitsFromFolder(QVector<QPixmap>& target, const QString& folder) const
+{
+    QDir playerPortraitDir(folder);
+    if(!playerPortraitDir.exists()){ qDebug() << "Player portrait dir not found!"; return false; }
+
+    QStringList playerPortraits = playerPortraitDir.entryList(QStringList() << "*.png",QDir::Files);
+    foreach(const auto& filename,playerPortraits)
+    {
+        qDebug() << "Found PlayerPortrait: "<< filename;
+        target.push_back(playerPortraitDir.filePath(filename));
+    }
+    return playerPortraits.size() > 0;
 }

@@ -16,10 +16,14 @@ GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
     ui->playerNameLabel->setText(game->getPlayer().getPlayerName());
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
 
+    // CONNECT GAME TIMER TICK TO UI
+    connect(game,&GameLogicModel::timeTicked,this,[=](const QTime& time){
+        ui->timeLabel->setText(time.toString("mm:ss"));
+    });
+
     loadBlockField();
 
     // CONNECT UI EVENTS TO GAME LOGIC
-    connect(this,SIGNAL(UIReady()),game,SLOT(onUIReady()));
     connect(ui->navUp,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::UP);});
     connect(ui->navDown,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::DOWN);});
     connect(ui->navLeft,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::LEFT);});

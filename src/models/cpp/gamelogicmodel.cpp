@@ -1,16 +1,21 @@
 #include "gamelogicmodel.h"
 #include <QDebug>
+#include "endblock.h"
 
 GameLogicModel::GameLogicModel(QObject *parent,const Map& map,const Player& player)
     : QObject(parent)
+    , started(false)
+    , gameTime(0,0,0,0)
     , activeMap(map)
     , lightFiller(this,activeMap,2)
     , player(player)
     , playerCoords(activeMap.getInitialCoords())
     , playerDirection(activeMap.getInitialDirection())
 {
-    placePlayer(playerCoords,playerCoords);
-    lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,AbstractGameBlock::LightLevel::LIT);
+    connectBlockEvents();
+
+    lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,
+                                       AbstractGameBlock::LightLevel::LIT);
 }
 
 const Player &GameLogicModel::getPlayer() const
@@ -50,11 +55,34 @@ void GameLogicModel::movePlayer(const Map::Direction& direction)
             qDebug() << "Unhandled Direction in movePlayer() in gamelogicmodel.cpp";
             break;
     }
+
+    if(!started && success)
+    {
+        started = true;
+        startGame();
+    }
 }
 
-QPoint GameLogicModel::getPlayerCoords() const
+void GameLogicModel::onPlayerEntered()
 {
-    return playerCoords;
+    //If entered block is endblock, game ends
+    if(qobject_cast<EndBlock*>(sender()) != nullptr)
+        endGame();
+}
+
+void GameLogicModel::onPlayerExited()
+{}
+
+void GameLogicModel::startGame()
+{
+    started = true;
+    connect(&gameTimer,&QTimer::timeout,this,[=](){
+        gameTime = gameTime.addSecs(1);
+        emit timeTicked(gameTime);
+    });
+
+    gameTimer.setInterval(1000);
+    gameTimer.start();
 }
 
 bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)
@@ -75,4 +103,21 @@ bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)
         }
     }
     return false; //Position unchanged
+}
+
+void GameLogicModel::connectBlockEvents()
+{
+    for(int row = 0; row < activeMap.getSize(); ++row)
+        for(int col = 0; col < activeMap.getSize(); ++col)
+        {
+            connect(activeMap.getGameBlock(row,col),&AbstractGameBlock::playerEntered,
+                                               this,&GameLogicModel::onPlayerEntered);
+        }
+}
+
+void GameLogicModel::endGame()
+{
+    gameTimer.stop();
+    qDebug() << "Game ended!";
+    emit gameEnded(gameTime);
 }

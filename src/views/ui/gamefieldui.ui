@@ -48,7 +48,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#gameFieldContainer{
-background-color: #ffffff;
+background-color: #000000;
 }</string>
      </property>
      <layout class="QGridLayout" name="gameFieldGrid">
@@ -182,6 +182,28 @@ color: #dfdfdf;
         </property>
         <property name="text">
          <string>Map Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="timeLabel">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#timeLabel{
+color: #dfdfdf;
+}</string>
+        </property>
+        <property name="text">
+         <string>00:00</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

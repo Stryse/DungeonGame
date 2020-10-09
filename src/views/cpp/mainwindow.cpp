@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
     // Connect Character Creation
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
-            changeWindow(new CharacterCreation(this));
+            changeWindow(new CharacterCreation(this,new PlayerDataAccessImpl()));
     });
     // Connect Load Game
     connect(ui->loadGameBtn,&QPushButton::clicked,this,[=](){

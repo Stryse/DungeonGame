@@ -16,6 +16,7 @@ public:
     // AbstractGameBlock interface
     void PopulateTextures() override;
     void DoPlayerExit(const Player& player) override;
+    void closeTrapdoor();
 
 signals:
     void startLeft();
