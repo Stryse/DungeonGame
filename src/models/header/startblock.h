@@ -19,6 +19,7 @@ public:
 
 signals:
     void startLeft();
+
 };
 
 #endif // STARTBLOCK_H

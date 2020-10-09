@@ -22,9 +22,6 @@ public:
     explicit GameFieldUI(QWidget *parent, GameLogicModel* game);
     ~GameFieldUI();
 
-public: signals:
-    void UIReady();
-
 protected:
     void keyPressEvent(QKeyEvent* event);
 
@@ -36,9 +33,7 @@ private:
     QPixmap* playerPortrait;
     QVector<QVector<AbstractGameBlockWidget*>> blockField;
     GameLogicModel* game;
-
     void loadBlockField();
-    QString loadLightTexture(int row, int col,const AbstractGameBlock::LightLevel& lightlevel);
 };
 
 #endif // GAMEFIELDUI_H

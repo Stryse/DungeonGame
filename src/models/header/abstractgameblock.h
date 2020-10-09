@@ -20,7 +20,8 @@ public:
     static AbstractGameBlock* create(const QString& type);
 
     //Types
-    enum class LightLevel { UNLIT = 0,LIT,HALF_LIT};
+    enum class LightLevel { UNLIT = 0, LIT, HALF_LIT};
+    Q_ENUM(LightLevel)
 
     //Getter
     bool getHasPlayer() const;
@@ -31,7 +32,7 @@ public:
     void setLightLevel(const LightLevel& value);
 
     //Interface methods
-    virtual void PopulateTextures() = 0;
+    virtual void PopulateTextures() = 0; //TODO MAKE IT PROTECTED
     virtual void DoPlayerEnter(const Player& player) = 0;
     virtual void DoPlayerExit (const Player& player) = 0;
     virtual bool isLightBlocking() const = 0;

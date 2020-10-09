@@ -9,6 +9,8 @@ GameLogicModel::GameLogicModel(QObject *parent,const Map& map,const Player& play
     , playerCoords(activeMap.getInitialCoords())
     , playerDirection(activeMap.getInitialDirection())
 {
+    placePlayer(playerCoords,playerCoords);
+    lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,AbstractGameBlock::LightLevel::LIT);
 }
 
 const Player &GameLogicModel::getPlayer() const
@@ -50,10 +52,9 @@ void GameLogicModel::movePlayer(const Map::Direction& direction)
     }
 }
 
-void GameLogicModel::onUIReady()
+QPoint GameLogicModel::getPlayerCoords() const
 {
-    placePlayer(playerCoords,playerCoords);
-    lightFiller.lightFill(playerCoords,AbstractGameBlock::LightLevel::UNLIT,AbstractGameBlock::LightLevel::LIT);
+    return playerCoords;
 }
 
 bool GameLogicModel::placePlayer(const QPoint& newPos, const QPoint& oldPos)

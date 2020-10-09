@@ -1,10 +1,6 @@
 #include "gamefieldui.h"
 #include "ui_gamefieldui.h"
 
-#include <QPainter>
-#include <QBrush>
-#include <QPalette>
-#include <QSizePolicy>
 #include <QKeyEvent>
 #include <QDebug>
 
@@ -29,7 +25,6 @@ GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
     connect(ui->navLeft,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::LEFT);});
     connect(ui->navRight,&QPushButton::clicked,[=](){ game->movePlayer(Map::Direction::RIGHT);});
 
-    emit UIReady();
 }
 
 GameFieldUI::~GameFieldUI()
@@ -65,28 +60,8 @@ void GameFieldUI::loadBlockField()
         blockField[row].resize(mapSize);
         for(int col = 0; col < mapSize; ++col)
         {
-            QString lit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::LIT);
-            QString unlit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::UNLIT);
-            QString halflit = loadLightTexture(row,col,AbstractGameBlock::LightLevel::HALF_LIT);
-
-            blockField[row][col] = new AbstractGameBlockWidget(this,
-                                                               blockTextures[lit],
-                                                               blockTextures[unlit],
-                                                               blockTextures[halflit],
-                                                               *game->getActiveMap().getGameBlock(row,col));
-
+            blockField[row][col] = new AbstractGameBlockWidget(this,*game->getActiveMap().getGameBlock(row,col));
             ui->gameFieldGrid->addWidget(blockField[row][col],row,col);
         }
     }
-}
-
-QString GameFieldUI::loadLightTexture(int row, int col,const AbstractGameBlock::LightLevel& lightlevel)
-{
-    QString texturePath = game->getActiveMap().getGameBlock(row,col)
-                              ->getLightTexturePath(lightlevel);
-
-    if(!blockTextures.contains(texturePath))
-        blockTextures.insert(texturePath,QPixmap(texturePath));
-
-    return texturePath;
 }

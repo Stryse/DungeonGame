@@ -2,6 +2,8 @@
 #define GAMELOGICMODEL_H
 
 #include <QObject>
+#include <QTime>
+
 #include "player.h"
 #include "map.h"
 #include "lightfiller.h"
@@ -18,15 +20,13 @@ public:
 public:
     const Player& getPlayer() const;
     const Map &getActiveMap() const;
+    QPoint getPlayerCoords() const;
 
 signals:
     void moved();
 
 public slots:
     void movePlayer(const Map::Direction& direction);
-
-private slots:
-    void onUIReady();
 
 private:
 //FIELDS
@@ -39,10 +39,17 @@ private:
     QPoint playerCoords;
     Map::Direction playerDirection;
 
+    //Game
+    bool started;
+    QTime gameTime;
+
 //METHODS
 
     //Player
     bool placePlayer(const QPoint& newPos, const QPoint& oldPos);
+
+    //Game
+    void StartGame();
 
 };
 
