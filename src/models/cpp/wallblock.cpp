@@ -1,30 +1,17 @@
 #include "wallblock.h"
 
-WallBlock::WallBlock()
+WallBlock::WallBlock() : AbstractGameBlock()
 {
-
+    PopulateTextures();
 }
 
-QString WallBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &lightlevel) const
+WallBlock::~WallBlock(){}
+
+void WallBlock::PopulateTextures()
 {
-    switch (lightlevel)
-    {
-        case AbstractGameBlock::LightLevel::LIT:
-            return QString(":/resources/img/blocks/wall.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/wall_half_lit.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::UNLIT:
-            return QString(":/resources/img/blocks/wall_unlit.jpg");
-        break;
-
-        default:
-            return QString(":/resources/img/blocks/invalid_block.png");
-        break;
-    }
+    textures[LightLevel::UNLIT]    = ":/resources/img/blocks/wall_unlit.jpg";
+    textures[LightLevel::LIT]      = ":/resources/img/blocks/wall.jpg";
+    textures[LightLevel::HALF_LIT] = ":/resources/img/blocks/wall_half_lit.jpg";
 }
 
 void WallBlock::DoPlayerEnter(const Player&){}

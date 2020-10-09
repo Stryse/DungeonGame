@@ -2,35 +2,23 @@
 #include <QDebug>
 
 
-StartBlock::StartBlock()
+StartBlock::StartBlock() : RoadBlock()
 {
-
+    PopulateTextures();
 }
 
-QString StartBlock::getLightTexturePath(const AbstractGameBlock::LightLevel& lightlevel) const
+StartBlock::~StartBlock(){}
+
+void StartBlock::PopulateTextures()
 {
-    switch (lightlevel)
-    {
-        case AbstractGameBlock::LightLevel::LIT:
-            return QString(":/resources/img/blocks/trapdoor_lit.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/trapdoor_half_lit.png");
-        break;
-
-        case AbstractGameBlock::LightLevel::UNLIT:
-            return QString(":/resources/img/blocks/wall_unlit.jpg");
-        break;
-
-        default:
-            return QString(":/resources/img/blocks/invalid_block.png");
-        break;
-    }
+    textures[LightLevel::UNLIT]    = ":/resources/img/blocks/wall_unlit.jpg";
+    textures[LightLevel::LIT]      = ":/resources/img/blocks/trapdoor_lit.jpg";
+    textures[LightLevel::HALF_LIT] = ":/resources/img/blocks/trapdoor_half_lit.png";
 }
 
 void StartBlock::DoPlayerExit(const Player& player)
 {
     RoadBlock::DoPlayerExit(player);
+    emit startLeft();
     qDebug() << "Start block left...";
 }

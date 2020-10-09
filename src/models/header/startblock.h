@@ -6,11 +6,19 @@
 
 class StartBlock : public RoadBlock
 {
+    Q_OBJECT
+
 public:
+    //CTOR
     StartBlock();
-    QString getLightTexturePath(const LightLevel& lightlevel) const override;
+    virtual ~StartBlock();
+
+    // AbstractGameBlock interface
+    void PopulateTextures() override;
     void DoPlayerExit(const Player& player) override;
 
+signals:
+    void startLeft();
 };
 
 #endif // STARTBLOCK_H

@@ -1,35 +1,24 @@
 #include "endblock.h"
 #include <QDebug>
 
-EndBlock::EndBlock()
+EndBlock::EndBlock() : RoadBlock()
 {
-
+    PopulateTextures();
 }
 
-QString EndBlock::getLightTexturePath(const AbstractGameBlock::LightLevel& lightlevel) const
+EndBlock::~EndBlock()
+{}
+
+void EndBlock::PopulateTextures()
 {
-    switch (lightlevel)
-    {
-        case AbstractGameBlock::LightLevel::LIT:
-            return QString(":/resources/img/blocks/exit_lit.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/exit_half_lit.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::UNLIT:
-            return QString(":/resources/img/blocks/exit_unlit.jpg");
-        break;
-
-        default:
-            return QString(":/resources/img/blocks/invalid_block.png");
-        break;
-    }
+    textures[LightLevel::UNLIT]    = ":/resources/img/blocks/exit_unlit.jpg";
+    textures[LightLevel::LIT]      = ":/resources/img/blocks/exit_lit.jpg";
+    textures[LightLevel::HALF_LIT] = ":/resources/img/blocks/exit_half_lit.jpg";
 }
 
 void EndBlock::DoPlayerEnter(const Player& player)
 {
     RoadBlock::DoPlayerEnter(player);
+    emit endBlockEntered();
     qDebug() << "WIN";
 }

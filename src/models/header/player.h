@@ -9,6 +9,7 @@
 class Player : public QObject
 {
     Q_OBJECT
+
 public:
     //CTOR
     explicit Player(QObject *parent,const QString& portrait,

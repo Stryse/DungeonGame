@@ -9,6 +9,7 @@
 class GameLogicModel : public QObject
 {
     Q_OBJECT
+
 public:
 
     //CTOR

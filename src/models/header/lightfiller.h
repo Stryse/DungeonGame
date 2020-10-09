@@ -11,6 +11,7 @@
 class LightFiller : public QObject
 {
     Q_OBJECT
+
 public:
 
     explicit LightFiller(QObject *parent, const Map& targetMap, int depth);

@@ -6,12 +6,15 @@
 
 class WallBlock : public AbstractGameBlock
 {
+    Q_OBJECT
+
 public:
     WallBlock();
+    virtual ~WallBlock();
 
     // AbstractGameBlock interface
 public:
-    QString getLightTexturePath(const LightLevel &lightlevel) const override;
+    void PopulateTextures() override;
     void DoPlayerEnter(const Player&) override;
     void DoPlayerExit (const Player&) override;
     bool isLightBlocking() const override;

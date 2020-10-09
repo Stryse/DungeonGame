@@ -6,11 +6,17 @@
 
 class EndBlock : public RoadBlock
 {
+    Q_OBJECT
 
 public:
+    //CTOR
     EndBlock();
-    QString getLightTexturePath(const LightLevel &lightlevel) const override;
+    virtual ~EndBlock();
+
+    void PopulateTextures() override;
     void DoPlayerEnter(const Player& player) override;
+signals:
+    void endBlockEntered();
 };
 
 #endif // ENDBLOCK_H

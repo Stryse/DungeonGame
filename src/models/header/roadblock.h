@@ -6,16 +6,18 @@
 
 class RoadBlock : public AbstractGameBlock
 {
+    Q_OBJECT
+
 public:
     RoadBlock();
+    virtual ~RoadBlock();
 
     // AbstractGameBlock interface
 public:
-    QString getLightTexturePath(const LightLevel &lightlevel) const override;
+    void PopulateTextures() override;
     void DoPlayerEnter(const Player& player) override;
     void DoPlayerExit(const Player& player) override;
     bool isLightBlocking() const override;
-
 };
 
 #endif // ROADBLOCK_H

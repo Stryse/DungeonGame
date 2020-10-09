@@ -1,30 +1,17 @@
 #include "roadblock.h"
 
-RoadBlock::RoadBlock()
+RoadBlock::RoadBlock() : AbstractGameBlock()
 {
-
+    PopulateTextures();
 }
 
-QString RoadBlock::getLightTexturePath(const AbstractGameBlock::LightLevel &lightlevel) const
+RoadBlock::~RoadBlock(){}
+
+void RoadBlock::PopulateTextures()
 {
-    switch (lightlevel)
-    {
-        case AbstractGameBlock::LightLevel::LIT:
-            return QString(":/resources/img/blocks/road.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::HALF_LIT:
-            return QString(":/resources/img/blocks/road_half_lit.jpg");
-        break;
-
-        case AbstractGameBlock::LightLevel::UNLIT:
-            return QString(":/resources/img/blocks/wall_unlit.jpg");
-        break;
-
-        default:
-            return QString(":/resources/img/blocks/invalid_block.png");
-        break;
-    }
+    textures[LightLevel::UNLIT]    = ":/resources/img/blocks/wall_unlit.jpg";
+    textures[LightLevel::LIT]      = ":/resources/img/blocks/road.jpg";
+    textures[LightLevel::HALF_LIT] = ":/resources/img/blocks/road_half_lit.jpg";
 }
 
 void RoadBlock::DoPlayerEnter(const Player& player)
