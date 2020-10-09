@@ -5,17 +5,18 @@
 #include <QPixmap>
 #include <QString>
 
+// TODO REMOVE QOBJECT
 class Player : public QObject
 {
     Q_OBJECT
 public:
     //CTOR
-    explicit Player(QObject *parent,const QPixmap& portrait,
+    explicit Player(QObject *parent,const QString& portrait,
                     const QString& pName, int strength = 1, int intellct = 1, int stamina = 1);
     ~Player();
 
 public:
-    const QPixmap& getPortrait() const;
+    const QString& getPortrait() const;
     QString getPlayerName() const;
     int getStrength() const;
 
@@ -23,7 +24,7 @@ signals:
 
 private:
 
-    const QPixmap portrait;
+    const QString portraitPath;
     QString playerName;
     int strength;
     int intellect;

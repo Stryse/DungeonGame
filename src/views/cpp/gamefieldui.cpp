@@ -9,18 +9,18 @@
 #include <QDebug>
 
 GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::GameFieldUI),
     game(game)
 {
     ui->setupUi(this);
 
     // UPDATE UI WITH GAME DATA
-    ui->playerPortraitWidget->setPixmap(game->getPlayer().getPortrait());
+    ui->playerPortraitWidget->setPixmap(QPixmap(game->getPlayer().getPortrait()));
     ui->playerNameLabel->setText(game->getPlayer().getPlayerName());
     ui->mapNameLabel->setText(game->getActiveMap().getMapName());
+
     loadBlockField();
-    setFocus();
 
     // CONNECT UI EVENTS TO GAME LOGIC
     connect(this,SIGNAL(UIReady()),game,SLOT(onUIReady()));

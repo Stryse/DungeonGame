@@ -4,6 +4,8 @@
 #include "ui_mainwindow.h"
 #include "playerdataaccessimpl.h"
 #include "mapdataaccessimpl.h"
+#include "gamefieldui.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,7 +15,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Connect New Game
     connect(ui->newgameBtn,&QPushButton::clicked,this,[=](){
-            changeWindow(new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()));
+        GameLoader* gameLoader = new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl());
+        connect(gameLoader,&GameLoader::gameLoaded,this,[=](GameLogicModel* game){
+            gameLoader->close();
+            changeWindow(new GameFieldUI(this,game));
+    });
+        changeWindow(gameLoader);
     });
     // Connect Character Creation
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
@@ -43,5 +50,6 @@ void MainWindow::changeWindow(QDialog* window)
 
     // Back to menu if destroyed, deallocate
     connect(window,&QWidget::destroyed,this,[=](){ ui->menuWidget->show(); });
+    window->setFocus();
     window->exec();
 }

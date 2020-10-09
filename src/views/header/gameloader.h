@@ -7,6 +7,7 @@
 #include "player.h"
 #include "iplayerdataaccess.h"
 #include "imapdataaccess.h"
+#include "gamelogicmodel.h"
 
 namespace Ui {
     class GameLoader;
@@ -20,8 +21,9 @@ public:
     explicit GameLoader(QWidget *parent,IPlayerDataAccess* pdataImpl, IMapDataAccess* mapdataImpl);
     ~GameLoader();
 
-protected:
-    void paintEvent(QPaintEvent *);
+signals:
+    void gameLoaded(GameLogicModel* gameInstance);
+
 
 private:
     Ui::GameLoader* ui;
@@ -31,11 +33,15 @@ private:
 
     IMapDataAccess* mapDataAccess;
     QVector<Map*> maps;
+    Map* activeMap;
 
     void populateMapTable();
 
 private slots:
     void setSelectedPlayer(int playerInd);
+
+protected:
+    void paintEvent(QPaintEvent *);
 };
 
 #endif // GAMELOADER_H

@@ -47,7 +47,7 @@ void AbstractGameBlockWidget::paintEvent(QPaintEvent* event)
 
 void AbstractGameBlockWidget::onPlayerEntered(const Player& player)
 {
-    playerTexture = player.getPortrait();
+    playerTexture = QPixmap(player.getPortrait());
     update();
 }
 

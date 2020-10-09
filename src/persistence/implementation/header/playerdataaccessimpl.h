@@ -1,6 +1,7 @@
 #ifndef PLAYERDATAACCESSIMPL_H
 #define PLAYERDATAACCESSIMPL_H
 
+//TODO load resources from resource virtual folder
 #define PLAYERDATA_FOLDER "./Players/PlayerData/"
 #define PLAYERPORTRAIT_FOLDER "./Players/Portraits/"
 #define DEFAULT_PLAYER_NAME "Játékos"
@@ -19,7 +20,7 @@ public:
 
     bool isAvailable() const override;
     bool loadPlayers(QVector<Player*>& target) const override;
-    bool loadAvailablePortraits(QVector<QPixmap*>& target) const override;
+    QStringList loadAvailablePortraits(QVector<QPixmap>& target) const override;
 
 private:
     void loadDefaultPlayer(QVector<Player*>& target) const;

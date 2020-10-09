@@ -26,7 +26,7 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
 
     //Read PlayerData
     QStringList playerDataBuffer = playerDataDir.entryList(QStringList() << "*.txt",QDir::Files);
-    for(auto& filename : playerDataBuffer)
+    foreach(auto& filename,playerDataBuffer)
     {
         qDebug() << "Found PlayerData: "<< filename;
         //Opening
@@ -43,10 +43,10 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
         int readIntellect;          stream >> readIntellect;
         int readStamina;            stream >> readStamina;
         QString readPlayerPortrait; stream >> readPlayerPortrait;
-        readPlayerPortrait = PLAYERPORTRAIT_FOLDER + readPlayerPortrait;
+        readPlayerPortrait          =PLAYERPORTRAIT_FOLDER + readPlayerPortrait;
 
         //Populating
-        target.push_back(new Player(nullptr,QPixmap(readPlayerPortrait),
+        target.push_back(new Player(nullptr,readPlayerPortrait,
                                     readPlayerName,readStrength,readIntellect,readStamina));
         //Closing resources
         stream.flush();
@@ -57,15 +57,16 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
     return true;
 }
 
-bool PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap*>& target) const
+QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap>& target) const
 {
-    return true;
+    QStringList portraitPaths;
+    return portraitPaths;
 }
 
 void PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
 {
     //Adding a default player
     // TODO check nullptr decide who's owner
-    Player* defaultPlayer = new Player(nullptr,QPixmap(DEFAULT_PLAYER_PORTRAIT),DEFAULT_PLAYER_NAME);
+    Player* defaultPlayer = new Player(nullptr,DEFAULT_PLAYER_PORTRAIT,DEFAULT_PLAYER_NAME);
     target.push_back(defaultPlayer);
 }

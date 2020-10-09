@@ -1,7 +1,7 @@
 #ifndef GAMEFIELDUI_H
 #define GAMEFIELDUI_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QVector>
 #include <QPixmap>
 #include <QMap>
@@ -13,7 +13,7 @@ namespace Ui {
 class GameFieldUI;
 }
 
-class GameFieldUI : public QWidget
+class GameFieldUI : public QDialog
 {
     Q_OBJECT
 

@@ -1,10 +1,9 @@
 #ifndef CHARACTERCREATION_H
 #define CHARACTERCREATION_H
 
-#include <QObject>
 #include <QDialog>
-#include <QStyleOption>
-#include <QPainter>
+#include <QPixmap>
+#include <QScopedPointer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class char_create_widget; }
@@ -25,6 +24,7 @@ protected:
 private:
     Ui::char_create_widget *ui;
 
+    QVector<QPixmap> playerPortraits;
 };
 
 #endif // CHARACTERCREATION_H

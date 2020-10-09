@@ -1,9 +1,9 @@
 #include "player.h"
 
-Player::Player(QObject *parent,const QPixmap& portrait,
+Player::Player(QObject *parent,const QString& portrait,
                     const QString& pName,int strength, int intellct, int stamina)
     : QObject(parent)
-    , portrait(portrait)
+    , portraitPath(portrait)
     , playerName(pName),strength(strength),intellect(intellct),stamina(stamina)
 {
 
@@ -23,7 +23,7 @@ int Player::getStrength() const
     return strength;
 }
 
-const QPixmap& Player::getPortrait() const
+const QString& Player::getPortrait() const
 {
-    return portrait;
+    return portraitPath;
 }
