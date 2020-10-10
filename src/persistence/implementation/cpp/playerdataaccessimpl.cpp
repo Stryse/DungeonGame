@@ -43,7 +43,7 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
         int readIntellect;          stream >> readIntellect;
         int readStamina;            stream >> readStamina;
         QString readPlayerPortrait; stream >> readPlayerPortrait;
-        readPlayerPortrait          =PLAYERPORTRAIT_FOLDER + readPlayerPortrait;
+        //readPlayerPortrait          =PLAYERPORTRAIT_FOLDER + readPlayerPortrait;
 
         //Populating
         target.push_back(new Player(nullptr,readPlayerPortrait,
@@ -57,7 +57,7 @@ bool PlayerDataAccessImpl::loadPlayers(QVector<Player*>& target) const
     return true;
 }
 
-QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap>& target) const
+QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QString>& target) const
 {
     QStringList portraitPaths;
     loadPortraitsFromFolder(target,PLAYERPORTRAIT_FOLDER);
@@ -67,7 +67,7 @@ QStringList PlayerDataAccessImpl::loadAvailablePortraits(QVector<QPixmap>& targe
 
 bool PlayerDataAccessImpl::savePlayer(const Player& player) const
 {
-    QFile saveFile(QString("%0.txt").arg(player.getPlayerName()));
+    QFile saveFile(QString("%0%1.txt").arg(PLAYERDATA_FOLDER,player.getPlayerName()));
     if (!saveFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "Couldn't save player to" << saveFile.fileName();
@@ -84,6 +84,7 @@ bool PlayerDataAccessImpl::savePlayer(const Player& player) const
     stream.flush();
     saveFile.close();
 
+    qDebug() << "Player saved to " << saveFile.fileName();
     return true;
 }
 
@@ -95,7 +96,7 @@ bool PlayerDataAccessImpl::loadDefaultPlayer(QVector<Player*>& target) const
     return defaultPlayer != nullptr;
 }
 
-bool PlayerDataAccessImpl::loadPortraitsFromFolder(QVector<QPixmap>& target, const QString& folder) const
+bool PlayerDataAccessImpl::loadPortraitsFromFolder(QVector<QString>& target, const QString& folder) const
 {
     QDir playerPortraitDir(folder);
     if(!playerPortraitDir.exists()){ qDebug() << "Player portrait dir not found!"; return false; }

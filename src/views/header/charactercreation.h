@@ -23,10 +23,14 @@ protected:
 private:
     Ui::char_create_widget *ui;
     CharacterCreationModel* charCreateModel;
-    QVector<QPixmap> playerPortraits;
+    QVector<QString> playerPortraitsPaths;
+    int activePortraitInd;
 
-    //Methods
-    void displayPlayerProperties();
+private slots:
+    void connectPLayerPortrait();
+    void connectPlayerStrength();
+    void connectPlayerIntellect();
+    void connectPlayerStamina();
 
 };
 

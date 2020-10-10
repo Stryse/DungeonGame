@@ -63,6 +63,12 @@ background-color: rgba(0,0,0,140);
        </property>
        <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
         <widget class="QWidget" name="skillAdjuster" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>240</width>
+           <height>285</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QWidget#skillAdjuster{
 background-color: rgba(0,0,0,180);
@@ -75,7 +81,10 @@ color: #dfdfdf;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <property name="leftMargin">
-           <number>25</number>
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
           </property>
           <item>
            <widget class="QLabel" name="SkillpointsLabel">
@@ -684,6 +693,9 @@ border-radius: 20px;
         </property>
         <item>
          <widget class="QPushButton" name="createBtn">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -724,6 +736,10 @@ background-color: rgba(89, 22, 9,200);
 color :  #eef205;
 border: 4px solid #eef205;
 border-radius: 20px;
+}
+
+QPushButton:disabled[flat=true]{
+background-color: rgba(74, 68, 68,170);
 }</string>
           </property>
           <property name="text">

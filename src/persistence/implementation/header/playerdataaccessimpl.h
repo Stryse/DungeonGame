@@ -22,14 +22,14 @@ public:
     //Input
     bool isAvailable() const override;
     bool loadPlayers(QVector<Player*>& target) const override;
-    QStringList loadAvailablePortraits(QVector<QPixmap>& target) const override;
+    QStringList loadAvailablePortraits(QVector<QString>& target) const override;
 
     //Output
     bool savePlayer(const Player& player) const override;
 
 private:
     bool loadDefaultPlayer(QVector<Player*>& target) const;
-    bool loadPortraitsFromFolder(QVector<QPixmap>& target, const QString& folder) const;
+    bool loadPortraitsFromFolder(QVector<QString>& target, const QString& folder) const;
 };
 
 #endif // PLAYERDATAACCESSIMPL_H

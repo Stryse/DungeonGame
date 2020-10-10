@@ -20,5 +20,6 @@
         <file>resources/img/backgrounds/app_icon.png</file>
         <file>resources/img/blocks/trapdoor_closed_half_lit.jpg</file>
         <file>resources/img/blocks/trapdoor_closed_lit.jpg</file>
+        <file>resources/img/player/doge.png</file>
     </qresource>
 </RCC>

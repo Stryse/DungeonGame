@@ -11,7 +11,7 @@ class CharacterCreationModel : public QObject
 public:
     explicit CharacterCreationModel(QObject *parent, IPlayerDataAccess* playerDataAccess);
 
-    //GETER
+    //GETTER
     QString getPlayerName() const;
     int getPlayerStrength() const;
     int getPlayerIntellect() const;
@@ -26,6 +26,8 @@ public:
     int addPointStamina(int value);
     IPlayerDataAccess* getPlayerDataAccess() const;
 
+    //Player factory
+    Player* makePlayer();
 
 private:
 
