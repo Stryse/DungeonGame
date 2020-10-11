@@ -31,10 +31,16 @@ GameLoader::GameLoader(QWidget *parent, IPlayerDataAccess* pdataImpl, IMapDataAc
     connect(ui->nextBtn,&QPushButton::clicked,this,[=](){
         setSelectedPlayer((++activePlayerInd) % players.size());
     });
+
     connect(ui->prevBtn,&QPushButton::clicked,this,[=](){
         setSelectedPlayer((--activePlayerInd % players.size() + players.size()) % players.size());
     });
-    connect(ui->maps,&QTableWidget::itemClicked,this,[=](){ ui->playBtn->setEnabled(true); });
+
+    connect(ui->maps,&QTableWidget::itemClicked,this,[=](){
+        ui->playBtn->setEnabled(true);
+        activeMap = maps.at(ui->maps->currentRow());
+    });
+
     connect(ui->cancelBtn,&QPushButton::clicked,this,&QWidget::close);
     connect(ui->playBtn,&QPushButton::clicked,this,[=](){
         emit gameLoaded(new GameLogicModel(parent,*activeMap,*players[activePlayerInd]));

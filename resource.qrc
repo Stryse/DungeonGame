@@ -21,5 +21,6 @@
         <file>resources/img/blocks/trapdoor_closed_half_lit.jpg</file>
         <file>resources/img/blocks/trapdoor_closed_lit.jpg</file>
         <file>resources/img/player/doge.png</file>
+        <file>resources/maps/Map_02.txt</file>
     </qresource>
 </RCC>
