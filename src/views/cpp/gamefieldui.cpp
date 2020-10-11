@@ -21,6 +21,12 @@ GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
         ui->timeLabel->setText(time.toString("mm:ss"));
     });
 
+    //Show Victory screen on game ending
+    connect(game,&GameLogicModel::gameEnded,[=](const Player& p, const QTime& t){
+        VictoryScreen* victoryS = new VictoryScreen(nullptr,p,t);
+        emit showVictoryScreen(victoryS);
+    });
+
     loadBlockField();
 
     // CONNECT UI EVENTS TO GAME LOGIC
@@ -33,6 +39,7 @@ GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
 
 GameFieldUI::~GameFieldUI()
 {
+    delete game;
     delete ui;
     qDebug() << "Gamefield window closed and deallocated";
 }
@@ -45,6 +52,12 @@ void GameFieldUI::keyPressEvent(QKeyEvent* event)
         case Qt::Key::Key_Escape:
         qDebug() << "ESCAPE pressed";
         close();
+        break;
+
+        case Qt::Key::Key_Pause:
+        qDebug() << "PAUSE pressed";
+        game->pause();
+        ui->timeLabel->setText("PAUSED");
         break;
 
         default:

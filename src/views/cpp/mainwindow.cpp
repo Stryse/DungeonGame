@@ -1,10 +1,7 @@
 #include "mainwindow.h"
-#include "gameloader.h"
-#include "charactercreation.h"
 #include "ui_mainwindow.h"
 #include "playerdataaccessimpl.h"
 #include "mapdataaccessimpl.h"
-#include "gamefieldui.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,14 +11,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Connect New Game
-    connect(ui->newgameBtn,&QPushButton::clicked,this,[=](){
-        GameLoader* gameLoader = new GameLoader(this,new PlayerDataAccessImpl(),new MapDataAccessImpl());
-        connect(gameLoader,&GameLoader::gameLoaded,this,[=](GameLogicModel* game){
-            gameLoader->close();
-            changeWindow(new GameFieldUI(this,game));
+    connect(ui->newgameBtn,&QPushButton::clicked,[=](){
+            GameLoader* gameLoader = new GameLoader(this);
+
+            //Connect Opening GameField
+            connect(gameLoader,&GameLoader::gameLoaded,[=](GameFieldUI* gameField){
+                    GameFieldUI* gameFieldUI = gameField;
+                    gameFieldUI->setParent(this);
+                    gameLoader->close();
+
+                    //Connect Victory Screen
+                    connect(gameFieldUI,&GameFieldUI::showVictoryScreen,[=](VictoryScreen* victoryS){
+                            VictoryScreen* victoryScreen = victoryS;
+                            victoryScreen->setParent(this);
+                            gameFieldUI->close();
+                            changeWindow(victoryScreen);
+                    });
+                    changeWindow(gameFieldUI);
+            });
+            changeWindow(gameLoader);
     });
-        changeWindow(gameLoader);
-    });
+
     // Connect Character Creation
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new CharacterCreation(this));

@@ -561,6 +561,34 @@ background-color: rgba(0,0,0,160);
 border-radius: 15px;
 }</string>
             </property>
+            <widget class="PaintedWidget" name="portrait_2" native="true">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>10</y>
+               <width>300</width>
+               <height>300</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>300</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QWidget#portrait{
+background-color: rgba(0,0,0,160);
+border-radius: 15px;
+}</string>
+             </property>
+            </widget>
            </widget>
           </item>
           <item>

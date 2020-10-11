@@ -13,13 +13,16 @@ PaintedWidget::PaintedWidget(QWidget *parent, const QPixmap &pixmap)
 
 void PaintedWidget::paintEvent(QPaintEvent *)
 {
-    QPainter p(this);
-    pixmap = pixmap.scaledToWidth(width());
-    const QSize pixSize = pixmap.size();
-    const int x = (this->rect().width() - pixSize .width()) / 2.0;
-    const int y = (this->rect().height() - pixSize .height()) / 2.0;
+    if(!pixmap.isNull())
+    {
+        QPainter p(this);
+        pixmap = pixmap.scaledToWidth(width());
+        const QSize pixSize = pixmap.size();
+        const int x = (this->rect().width() - pixSize .width()) / 2.0;
+        const int y = (this->rect().height() - pixSize .height()) / 2.0;
 
-    p.drawPixmap(x,y,pixSize.width(),pixSize.height(),pixmap);
+        p.drawPixmap(x,y,pixSize.width(),pixSize.height(),pixmap);
+    }
 }
 
 const QPixmap& PaintedWidget::getPixmap() const

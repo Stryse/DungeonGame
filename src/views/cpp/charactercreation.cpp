@@ -20,7 +20,7 @@ CharacterCreation::CharacterCreation(QWidget *parent)
     charCreateModel->getPlayerDataAccess()->loadAvailablePortraits(playerPortraitsPaths);
 
     //Display player properties
-    ui->portrait->setPixmap(QPixmap(playerPortraitsPaths[0]));
+    ui->portrait->setPixmap(playerPortraitsPaths[0]);
     ui->SkillpointsLabel->setText(QString("Skill points: %0").arg(charCreateModel->getMaxSkillPoints()));
 
     //CONNECT DATA ENTRY
@@ -117,7 +117,7 @@ void CharacterCreation::connectPLayerPortrait()
     //Next
     connect(ui->nextBtn,&QPushButton::clicked,this,[=](){
         activePortraitInd = ((++activePortraitInd % playerPortraitsPaths.size()) + playerPortraitsPaths.size()) % playerPortraitsPaths.size();
-        ui->portrait->setPixmap(QPixmap(playerPortraitsPaths[activePortraitInd]));
+        ui->portrait->setPixmap(playerPortraitsPaths[activePortraitInd]);
 
         charCreateModel->setPlayerPortraitPath(playerPortraitsPaths[activePortraitInd]);
         ui->portrait->update();
@@ -125,7 +125,7 @@ void CharacterCreation::connectPLayerPortrait()
     //Prev
     connect(ui->prevBtn,&QPushButton::clicked,this,[=](){
         activePortraitInd = ((--activePortraitInd % playerPortraitsPaths.size()) + playerPortraitsPaths.size()) % playerPortraitsPaths.size();
-        ui->portrait->setPixmap(QPixmap(playerPortraitsPaths[activePortraitInd]));
+        ui->portrait->setPixmap(playerPortraitsPaths[activePortraitInd]);
 
         charCreateModel->setPlayerPortraitPath(playerPortraitsPaths[activePortraitInd]);
         ui->portrait->update();

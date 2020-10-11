@@ -14,6 +14,9 @@ public:
     //CTOR
     explicit Player(QObject *parent,const QString& portrait,
                     const QString& pName, int strength = 1, int intellct = 1, int stamina = 1);
+
+    explicit Player(const Player& other);
+
     ~Player();
 
 public:

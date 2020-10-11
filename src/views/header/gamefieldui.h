@@ -8,6 +8,7 @@
 
 #include "abstractgameblockwidget.h"
 #include "gamelogicmodel.h"
+#include "victoryscreen.h"
 
 namespace Ui {
 class GameFieldUI;
@@ -22,17 +23,21 @@ public:
     explicit GameFieldUI(QWidget *parent, GameLogicModel* game);
     ~GameFieldUI();
 
+signals:
+    void showVictoryScreen(VictoryScreen* victoryScreen);
+
 protected:
     void keyPressEvent(QKeyEvent* event);
 
 private:
     //FIELDS
     Ui::GameFieldUI *ui;
-
-    QMap<QString,QPixmap> blockTextures; // Collective store for textures
-    QPixmap* playerPortrait;
     QVector<QVector<AbstractGameBlockWidget*>> blockField;
+    QPixmap* playerPortrait;
+
     GameLogicModel* game;
+
+    //Methods
     void loadBlockField();
 };
 

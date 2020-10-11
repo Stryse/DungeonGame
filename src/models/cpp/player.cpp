@@ -9,6 +9,13 @@ Player::Player(QObject *parent,const QString& portrait,
 
 }
 
+Player::Player(const Player& other)
+    :portraitPath(other.portraitPath),playerName(other.playerName),strength(other.strength)
+    ,intellect(other.intellect),stamina(other.stamina)
+{
+
+}
+
 Player::~Player()
 {
 }

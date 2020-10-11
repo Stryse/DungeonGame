@@ -16,7 +16,8 @@ class GameLogicModel : public QObject
 public:
 
     //CTOR
-    explicit GameLogicModel(QObject *parent,const Map& map,const Player& player);
+    explicit GameLogicModel(QObject *parent,Map* map,Player* player);
+    ~GameLogicModel();
 
 public:
     //Getters
@@ -26,7 +27,7 @@ public:
 signals:
     void moved();
     void timeTicked(const QTime& time);
-    void gameEnded (const QTime& time);
+    void gameEnded (const Player& player,const QTime& time);
 
 public slots:
     void startGame();
@@ -38,15 +39,16 @@ private:
 //FIELDS
     //Game
     bool   started;
+    bool   paused;
     QTimer gameTimer;
     QTime  gameTime;
 
     //Map
-    const Map& activeMap; // MIGHT NEED POINTER
+    Map* activeMap; // MIGHT NEED POINTER
     LightFiller lightFiller;
 
     //Player
-    const Player& player;
+    Player* player;
     QPoint playerCoords;
     Map::Direction playerDirection;
 
@@ -58,6 +60,9 @@ private:
     //Game
     void connectBlockEvents();
     void endGame();
+
+public:
+    void pause();
 
 };
 

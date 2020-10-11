@@ -2,12 +2,9 @@
 #define GAMELOADER_H
 
 #include <QDialog>
-#include <QVector>
 #include <QPaintEvent>
-#include "player.h"
-#include "iplayerdataaccess.h"
-#include "imapdataaccess.h"
-#include "gamelogicmodel.h"
+#include "gameloadermodel.h"
+#include "gamefieldui.h"
 
 namespace Ui {
     class GameLoader;
@@ -18,27 +15,18 @@ class GameLoader : public QDialog
     Q_OBJECT
 
 public:
-    explicit GameLoader(QWidget *parent,IPlayerDataAccess* pdataImpl, IMapDataAccess* mapdataImpl);
+    explicit GameLoader(QWidget *parent = nullptr);
     ~GameLoader();
 
 signals:
-    void gameLoaded(GameLogicModel* gameInstance);
-
+    void gameLoaded(GameFieldUI* gameField);
 
 private:
     Ui::GameLoader* ui;
-    IPlayerDataAccess* playerDataAccess;
-    QVector<Player*> players;
-    int activePlayerInd;
-
-    IMapDataAccess* mapDataAccess;
-    QVector<Map*> maps;
-    Map* activeMap;
+    GameLoaderModel* model;
 
     void populateMapTable();
-
-private slots:
-    void setSelectedPlayer(int playerInd);
+    void displaySelectedPlayer();
 
 protected:
     void paintEvent(QPaintEvent *);

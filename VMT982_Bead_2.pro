@@ -13,6 +13,7 @@ SOURCES += \
     src/models/cpp/abstractgameblock.cpp \
     src/models/cpp/charactercreationmodel.cpp \
     src/models/cpp/endblock.cpp \
+    src/models/cpp/gameloadermodel.cpp \
     src/models/cpp/gamelogicmodel.cpp \
     src/models/cpp/lightfiller.cpp \
     src/models/cpp/map.cpp \
@@ -27,12 +28,14 @@ SOURCES += \
     src/views/cpp/gamefieldui.cpp \
     src/views/cpp/gameloader.cpp \
     src/views/cpp/mainwindow.cpp \
-    src/views/cpp/paintedwidget.cpp
+    src/views/cpp/paintedwidget.cpp \
+    src/views/cpp/victoryscreen.cpp
 
 HEADERS += \
     src/models/header/abstractgameblock.h \
     src/models/header/charactercreationmodel.h \
     src/models/header/endblock.h \
+    src/models/header/gameloadermodel.h \
     src/models/header/gamelogicmodel.h \
     src/models/header/lightfiller.h \
     src/models/header/map.h \
@@ -49,13 +52,15 @@ HEADERS += \
     src/views/header/gamefieldui.h \
     src/views/header/gameloader.h \
     src/views/header/mainwindow.h \
-    src/views/header/paintedwidget.h
+    src/views/header/paintedwidget.h \
+    src/views/header/victoryscreen.h
 
 FORMS += \
     src/views/ui/character_creation.ui \
     src/views/ui/gamefieldui.ui \
     src/views/ui/gameloader.ui \
-    src/views/ui/mainwindow.ui
+    src/views/ui/mainwindow.ui \
+    src/views/ui/victoryscreen.ui
 
 UI_DIR = $$PWD/src/views/header/generated
 
