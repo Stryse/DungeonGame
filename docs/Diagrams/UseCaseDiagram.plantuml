@@ -1,0 +1,45 @@
+# Főmenü ablak
+
+@startuml UseCaseDiagram
+
+left to right direction
+
+actor Játékos as Player
+
+rectangle "Játék ablak" {
+  usecase (Új játék) as NewGame
+  rectangle Pályabetöltő {
+
+    usecase (Pálya választás) as LoadMap
+    usecase (Játékos választás) as ChoosePlayer
+  }
+usecase (Lépés) as Move
+usecase (Szüneteltetés) as Pause
+usecase (Vissza a főmenübe) as BackToMain
+}
+
+rectangle "Karakter készítés ablak" {
+  usecase (Karakterkészítés) as CharacterCreation
+  usecase (Játékosnév választás) as ChoosePlayerName
+  usecase (Ügyességi pont elosztás) as SkillPoint
+  usecase (Játékos portré választás) as ChoosePlayerPortrait
+}
+usecase (Kilépés) as Quit
+
+Player -down- NewGame
+NewGame --> LoadMap : <<include>>
+NewGame --> ChoosePlayer : <<include>>
+NewGame <-r- Move : <<extend>>
+NewGame <-l- Pause : <<extend>>
+NewGame -- BackToMain
+
+Player -- CharacterCreation
+CharacterCreation --> ChoosePlayerName : <<include>>
+CharacterCreation --> SkillPoint : <<include>>
+CharacterCreation --> ChoosePlayerPortrait : <<include>>
+
+
+Player -- Quit
+
+
+@enduml

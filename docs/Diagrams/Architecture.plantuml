@@ -1,0 +1,38 @@
+# Architektúra
+
+@startuml Architecture
+
+rectangle Nézet{
+  
+class MainWindow
+class GameFieldUI
+class GameLoaderUI
+class CharacterCreation
+class VictoryScreen
+MainWindow *- GameLoaderUI
+MainWindow *-- GameFieldUI
+MainWindow *-right- CharacterCreation
+MainWindow *-- VictoryScreen
+GameLoaderUI --> GameFieldUI : <<creates>>
+GameFieldUI --> VictoryScreen : <<creates>>
+}
+
+rectangle Modell{
+class GameLogicModel
+class GameLoaderModel
+class CharacterCreationModel
+GameLoaderModel --> GameLogicModel : <<creates>>
+}
+
+rectangle Perzisztencia{
+class PlayerDataAccessImpl
+class MapDataAccessImpl
+}
+
+GameLoaderModel *-up- MapDataAccessImpl
+GameLoaderModel *-up- PlayerDataAccessImpl
+CharacterCreation *-up- CharacterCreationModel
+GameLoaderUI *-r- GameLoaderModel
+GameFieldUI *-- GameLogicModel
+
+@enduml

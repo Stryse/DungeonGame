@@ -1,0 +1,26 @@
+# PlayerDataAccessImpl
+
+@startuml
+
+skinparam classAttributeIconSize 0
+
+interface IPlayerDataAccess{
+{abstract} +isAvailable() : **bool**
+{abstract} +loadPlayers(target : **QVector<Player*>&**) : **bool**
+{abstract} +loadAvailablePortraits(target : **QVector<QString>&**) : **StringList**
+{abstract} +savePlayer(player : **Player&**) : **bool**
+}
+
+class PlayerDataAccessImpl{
++PlayerDataAccessImpl()
+{abstract} +isAvailable() : **bool** <<override>>
+{abstract} +loadPlayers(target : **QVector<Player*>&**) : **bool** <<override>>
+{abstract} +loadAvailablePortraits(target : **QVector<QString>&**) : **StringList** <<override>>
+{abstract} +savePlayer(player : **Player&**) : **bool** <<override>>
+-loadDefaultPlayer(target : **QVector<Player*>&**) : **bool**
+-loadPortraitsFromFolder(target : **QVector<QString>&**, folder **String&**)
+}
+
+IPlayerDataAccess <|-- PlayerDataAccessImpl
+
+@enduml
