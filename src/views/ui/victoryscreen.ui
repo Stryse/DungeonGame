@@ -194,7 +194,7 @@ border-radius: 20px;
 }</string>
         </property>
         <property name="text">
-         <string>New Game</string>
+         <string>Vissza a menübe</string>
         </property>
         <property name="flat">
          <bool>true</bool>

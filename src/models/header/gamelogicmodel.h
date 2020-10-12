@@ -23,9 +23,10 @@ public:
     //Getters
     const Player& getPlayer() const;
     const Map &getActiveMap() const;
+    const QPoint& getPlayerCoords() const;
+    const Map::Direction& getPlayerDirection() const;
 
 signals:
-    void moved();
     void timeTicked(const QTime& time);
     void gameEnded (const Player& player,const QTime& time);
 

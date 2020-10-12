@@ -4,19 +4,23 @@
 #include <QWidget>
 #include <QPixmap>
 
+//Widget with painted background
 class PaintedWidget : public QWidget
 {
     Q_OBJECT
 public:
+
+    //CTOR
     explicit PaintedWidget(QWidget* parent);
     explicit PaintedWidget(QWidget* parent,const QPixmap& pixmap);
 
+    //GETTER
     const QPixmap &getPixmap() const;
     QPixmap &getPixmap();
+
+    //SETTER
     void setPixmap(const QString& path);
     void setPixmap(const QPixmap& pxmap);
-
-signals:
 
 protected:
     void paintEvent(QPaintEvent *);

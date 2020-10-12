@@ -11,7 +11,7 @@ VictoryScreen::VictoryScreen(QWidget *parent, const Player& player, const QTime&
     ui->setupUi(this);
     ui->portrait->setPixmap(player.getPortrait());
     ui->timeLabel->setText(QString("Köridő: %0").arg(playTime.toString("mm:ss")));
-    connect(ui->backToMainMenuBtn,&QPushButton::clicked,this,&QDialog::close);
+    connect(ui->backToMainMenuBtn,&QPushButton::clicked,this,&QWidget::close);
 }
 
 VictoryScreen::~VictoryScreen()

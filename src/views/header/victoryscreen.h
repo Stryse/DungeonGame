@@ -10,6 +10,7 @@ namespace Ui {
     class VictoryScreen;
 }
 
+//Shown if game is won
 class VictoryScreen : public QDialog
 {
     Q_OBJECT

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dungeon Kristóf</string>
+   <string>Labirintus Játék</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../resource.qrc">
@@ -152,7 +152,7 @@ border-radius: 20px;
 }</string>
          </property>
          <property name="text">
-          <string>New Game</string>
+          <string>Új Játék</string>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -198,7 +198,7 @@ border-radius: 20px;
 }</string>
          </property>
          <property name="text">
-          <string>Create Character</string>
+          <string>Karakter készítés</string>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -244,7 +244,7 @@ border-radius: 20px;
 }</string>
          </property>
          <property name="text">
-          <string>Quit</string>
+          <string>Kilépés</string>
          </property>
          <property name="shortcut">
           <string>Esc</string>

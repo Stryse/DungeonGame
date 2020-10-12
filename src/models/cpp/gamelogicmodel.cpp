@@ -83,6 +83,16 @@ void GameLogicModel::onPlayerEntered()
 void GameLogicModel::onPlayerExited()
 {}
 
+const Map::Direction& GameLogicModel::getPlayerDirection() const
+{
+    return playerDirection;
+}
+
+const QPoint& GameLogicModel::getPlayerCoords() const
+{
+    return playerCoords;
+}
+
 void GameLogicModel::startGame()
 {
     started = true;

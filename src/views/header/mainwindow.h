@@ -2,15 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "gameloader.h"
-#include "gamefieldui.h"
-#include "victoryscreen.h"
-#include "charactercreation.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+//This class is managing different windows that appear in viewport
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -24,7 +21,9 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void changeWindow(QDialog* window);
+
+    //Displays window in viewport
+    void changeWindow(QWidget* window);
 
 };
 #endif // MAINWINDOW_H

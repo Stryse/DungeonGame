@@ -49,7 +49,7 @@ background-color: rgba(0,0,0,140);
 }</string>
        </property>
        <property name="text">
-        <string>Character Creation</string>
+        <string>Karakterkészítés</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -438,7 +438,7 @@ border-radius: 20px;
                </font>
               </property>
               <property name="text">
-               <string>0</string>
+               <string>1</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -537,7 +537,7 @@ border-radius: 15px;
              <set>Qt::AlignCenter</set>
             </property>
             <property name="placeholderText">
-             <string>PlayerName</string>
+             <string>Játékosnév</string>
             </property>
            </widget>
           </item>
@@ -771,7 +771,7 @@ background-color: rgba(74, 68, 68,170);
 }</string>
           </property>
           <property name="text">
-           <string>Create</string>
+           <string>Kész</string>
           </property>
           <property name="shortcut">
            <string>Return</string>
@@ -826,7 +826,7 @@ border-radius: 20px;
 }</string>
           </property>
           <property name="text">
-           <string>Cancel</string>
+           <string>Mégse</string>
           </property>
           <property name="shortcut">
            <string>Esc</string>

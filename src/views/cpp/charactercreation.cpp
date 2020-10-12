@@ -9,7 +9,7 @@
 #include "playerdataaccessimpl.h"
 
 CharacterCreation::CharacterCreation(QWidget *parent)
-    : QDialog(parent)
+    : QWidget(parent)
     , ui(new Ui::char_create_widget)
     , charCreateModel(new CharacterCreationModel(this, new PlayerDataAccessImpl()))
     , activePortraitInd(0)
@@ -25,15 +25,10 @@ CharacterCreation::CharacterCreation(QWidget *parent)
 
     //CONNECT DATA ENTRY
     //Playername
-    connect(ui->pnameEdit,&QLineEdit::textChanged,
-            charCreateModel,[=](const QString& text){
-
-        ui->createBtn->setEnabled(text != "" && text[0] != ' ');
-        charCreateModel->setPlayerName(text);
-    });
+    connectPlayerName();
 
     //Player portrait
-    connectPLayerPortrait();
+    connectPlayerPortrait();
 
     //Skill points
     connectPlayerStrength();
@@ -112,7 +107,7 @@ void CharacterCreation::connectPlayerStamina()
 
 }
 
-void CharacterCreation::connectPLayerPortrait()
+void CharacterCreation::connectPlayerPortrait()
 {
     //Next
     connect(ui->nextBtn,&QPushButton::clicked,this,[=](){
@@ -132,6 +127,17 @@ void CharacterCreation::connectPLayerPortrait()
     });
 }
 
+void CharacterCreation::connectPlayerName()
+{
+    //Playername
+    connect(ui->pnameEdit,&QLineEdit::textChanged,
+            charCreateModel,[=](const QString& text){
+
+        ui->createBtn->setEnabled(text != "" && text[0] != ' ');
+        charCreateModel->setPlayerName(text);
+    });
+}
+
 void CharacterCreation::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
@@ -139,3 +145,4 @@ void CharacterCreation::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+

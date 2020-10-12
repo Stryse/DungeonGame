@@ -1,26 +1,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "playerdataaccessimpl.h"
-#include "mapdataaccessimpl.h"
+#include "gameloader.h"
+#include "gamefieldui.h"
+#include "victoryscreen.h"
+#include "charactercreation.h"
+#include <QDebug>
 
-
+//This class is managing different windows that appear in viewport
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    // Connect New Game
+    // CONNECT NEW GAME (GameLoader)
     connect(ui->newgameBtn,&QPushButton::clicked,[=](){
-            GameLoader* gameLoader = new GameLoader(this);
+            GameLoaderUI* gameLoader = new GameLoaderUI(this);
 
-            //Connect Opening GameField
-            connect(gameLoader,&GameLoader::gameLoaded,[=](GameFieldUI* gameField){
+            //Connect Gamefield -- Managed by GameLoader
+            connect(gameLoader,&GameLoaderUI::gameLoaded,[=](GameFieldUI* gameField){
                     GameFieldUI* gameFieldUI = gameField;
                     gameFieldUI->setParent(this);
                     gameLoader->close();
 
-                    //Connect Victory Screen
+                    //Connect Victory Screen -- Managed by GameField
                     connect(gameFieldUI,&GameFieldUI::showVictoryScreen,[=](VictoryScreen* victoryS){
                             VictoryScreen* victoryScreen = victoryS;
                             victoryScreen->setParent(this);
@@ -36,18 +39,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->charcreateBtn,&QPushButton::clicked,this,[=](){
             changeWindow(new CharacterCreation(this));
     });
+
     // Connect Quit
     connect(ui->quitBtn,&QPushButton::clicked,this,&QMainWindow::close);
 }
 
 MainWindow::~MainWindow()
 {
+    qDebug() << "Mainwindow closed and deallocated";
     delete ui;
 }
 
-void MainWindow::changeWindow(QDialog* window)
+//Displays window in viewport
+void MainWindow::changeWindow(QWidget* window)
 {
     window->setAttribute(Qt::WA_DeleteOnClose);
+
     //Close Menu
     ui->menuWidget->hide();
 
@@ -55,7 +62,8 @@ void MainWindow::changeWindow(QDialog* window)
     ui->viewPortLayout->addWidget(window,1,1,Qt::AlignCenter);
 
     // Back to menu if destroyed, deallocate
-    connect(window,&QWidget::destroyed,this,[=](){ ui->menuWidget->show(); });
+    auto destroyConnection = connect(window,&QWidget::destroyed,[=](){ ui->menuWidget->show();});
+    connect(this,&QWidget::destroyed,[=](){ disconnect(destroyConnection); });
     window->setFocus();
-    window->exec();
+    window->show();
 }

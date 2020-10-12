@@ -453,7 +453,7 @@ background-color: rgba(74, 68, 68,170);
 }</string>
    </property>
    <property name="text">
-    <string>Play</string>
+    <string>Játék</string>
    </property>
    <property name="shortcut">
     <string>Return</string>
@@ -519,7 +519,7 @@ color: #dfdfdf;
 }</string>
    </property>
    <property name="text">
-    <string>PlayerName</string>
+    <string>Játékosnév</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -577,7 +577,7 @@ border-radius: 20px;
 }</string>
    </property>
    <property name="text">
-    <string>cancel</string>
+    <string>Mégse</string>
    </property>
    <property name="shortcut">
     <string>Esc</string>

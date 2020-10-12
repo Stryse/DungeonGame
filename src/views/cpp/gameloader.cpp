@@ -6,19 +6,17 @@
 #include "mapdataaccessimpl.h"
 #include "gamelogicmodel.h"
 
-GameLoader::GameLoader(QWidget *parent) :
-    QDialog(parent),
+//Loads map and player and constructs game instance
+GameLoaderUI::GameLoaderUI(QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::GameLoader),
     model(new GameLoaderModel(this,new PlayerDataAccessImpl(),new MapDataAccessImpl()))
 {
+    //CONSTRUCT UI
     ui->setupUi(this);
-
     displaySelectedPlayer();
     populateMapTable();
 
-    //CONNECT BUTTONS
-    connect(ui->nextBtn,&QPushButton::clicked,[=](){ model->nextPlayer(); displaySelectedPlayer();});
-    connect(ui->prevBtn,&QPushButton::clicked,[=](){ model->prevPlayer(); displaySelectedPlayer();});
 
     //CONNECT TABLE WIDGET SELCTION
     connect(ui->maps,&QTableWidget::itemClicked,this,[=](){
@@ -26,6 +24,12 @@ GameLoader::GameLoader(QWidget *parent) :
         model->setActiveMap(ui->maps->currentRow());
     });
 
+
+    //CONNECT BUTTONS
+    //Portrait
+    connect(ui->nextBtn,&QPushButton::clicked,[=](){ model->nextPlayer(); displaySelectedPlayer();});
+    connect(ui->prevBtn,&QPushButton::clicked,[=](){ model->prevPlayer(); displaySelectedPlayer();});
+    //Navigation
     connect(ui->cancelBtn,&QPushButton::clicked,this,&QWidget::close);
     connect(ui->playBtn,  &QPushButton::clicked,this,[=](){
 
@@ -38,14 +42,14 @@ GameLoader::GameLoader(QWidget *parent) :
 }
 
 //Updates UI With selected player
-void GameLoader::displaySelectedPlayer()
+void GameLoaderUI::displaySelectedPlayer()
 {
     ui->playerNameLabel->setText(model->getActivePlayer()->getPlayerName());
     ui->playerPortraitWidget->setPixmap(model->getActivePlayer()->getPortrait());
     ui->playerPortraitWidget->update();
 }
 
-void GameLoader::paintEvent(QPaintEvent *)
+void GameLoaderUI::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
     opt.init(this);
@@ -53,7 +57,7 @@ void GameLoader::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
-void GameLoader::populateMapTable()
+void GameLoaderUI::populateMapTable()
 {
     ui->maps->setRowCount(model->getMaps().size());
     ui->maps->setHorizontalHeaderLabels(QStringList({"Pálya név","Nehézség","Méret"}));
@@ -73,7 +77,7 @@ void GameLoader::populateMapTable()
     }
 }
 
-GameLoader::~GameLoader()
+GameLoaderUI::~GameLoaderUI()
 {
     delete ui;
     delete model;

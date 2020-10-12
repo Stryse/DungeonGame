@@ -5,7 +5,7 @@
 #include <QDebug>
 
 GameFieldUI::GameFieldUI(QWidget *parent, GameLogicModel* game) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::GameFieldUI),
     game(game)
 {

@@ -137,7 +137,7 @@ color: #dfdfdf;
 }</string>
            </property>
            <property name="text">
-            <string>PlayerName</string>
+            <string>Játékosnév</string>
            </property>
           </widget>
          </item>
@@ -182,7 +182,7 @@ color: #dfdfdf;
 }</string>
         </property>
         <property name="text">
-         <string>Map Name</string>
+         <string>Pályanév</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

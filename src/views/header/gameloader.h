@@ -1,7 +1,7 @@
 #ifndef GAMELOADER_H
 #define GAMELOADER_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QPaintEvent>
 #include "gameloadermodel.h"
 #include "gamefieldui.h"
@@ -10,21 +10,25 @@ namespace Ui {
     class GameLoader;
 }
 
-class GameLoader : public QDialog
+//Loads map and player and constructs game instance
+class GameLoaderUI : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit GameLoader(QWidget *parent = nullptr);
-    ~GameLoader();
+    //CTOR
+    explicit GameLoaderUI(QWidget *parent = nullptr);
+    ~GameLoaderUI();
 
 signals:
+    //Emits game instance
     void gameLoaded(GameFieldUI* gameField);
 
 private:
     Ui::GameLoader* ui;
     GameLoaderModel* model;
 
+    //GameLoader
     void populateMapTable();
     void displaySelectedPlayer();
 
