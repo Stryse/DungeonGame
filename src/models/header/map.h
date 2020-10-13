@@ -10,7 +10,6 @@ class Map : public QObject
 {
 
 public:
-    explicit Map(); // TODO REMOVE
     explicit Map(const QString& mapName,
                  const QVector<QVector<AbstractGameBlock*>>& dataGrid,
                  const QPoint& initCoords,int direction);

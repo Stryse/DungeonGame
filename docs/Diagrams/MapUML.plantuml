@@ -1,0 +1,84 @@
+# Map
+
+@startuml
+left to right direction
+skinparam ClassAttributeIconSize 0
+
+class Map{
+-mapName : **QString**
+-initialCoords : **QPoint**
+-initialDirection : **Direction**
+-size : **int**
+----
++Map(map: **QString**, dataGrid : **GameBlockGrid&**, initCoords : **QPoint&**, "direction" : **int**)
++isInMapBounds(row : **int**, col : **int**)
++isInMapBounds(point : **QPoint**)
+-- <<getter>> --
++getMapName() : **QString**
++getInitialCoords() : **QPoint**
++getInitialDirection() : **Direction**
++getGameBlock(row : **int**, col : **int**) : **AbstractGameBlock***
++getGameBlock(point : **QPoint**) : **AbstractGameBlock***
++getSize() : **int**
+}
+
+enum Direction{
+UP,DOWN,LEFT,RIGHT
+}
+
+abstract class AbstractGameBlock{
+-hasPlayer : **bool**
+-lightLevel : **LightLevel**
+#textures : **QMap<LightLevel,QString> textures**
+----
+{static} create(type : **QString&**) : **AbstractGameBlock*** <<factory>>
+{abstract}#populateTextures() : **void** <<virtual>>
+{abstract}+doPlayerEnter(player : **player**) : **void** <<virtual>>
+{abstract}+doPlayerExit(player : **player**) : **void** <<virtual>>
+{abstract}+isLightBlocking() : **bool** <<virtual>>
+-- <<getter>> --
++getHasPlayer() : **bool**
++getLightLevel() : **LightLevel**
++getLightTexturePath(lightlevel : **LightLevel**) : **QString**
+-- <<setter>> --
++setHasPlayer(value : **bool**) : **void**
++setLightLevel(value : **LightLevel&**) : **void**
+-- <<signals>> --
++playerEntered(player : **Player**) : **void**
++playerExited(player : **Player**) : **void**
++lightLevelChanged(lightLevel : **LightLevel**) : **void**
++updateTextures() : **void**
+}
+
+enum LightLevel{
+UNLIT,LIT,HALF_LIT 
+}
+
+class WallBlock{
+...
+//<<rejects player Enter>>//
+}
+
+class RoadBlock{
+...
+//<<accepts player Enter>>//
+}
+
+class StartBlock{
+...
+}
+
+class EndBlock{
+...
+}
+
+QObject <|-right- Map
+Map "blockData" *--- "*" AbstractGameBlock
+Map ..> Direction
+AbstractGameBlock <|-- WallBlock
+AbstractGameBlock <|-right- RoadBlock
+RoadBlock <|-- StartBlock
+RoadBlock <|-- EndBlock
+AbstractGameBlock --> LightLevel
+
+@enduml

@@ -1,0 +1,48 @@
+# GameLogicModel
+
+@startuml
+left to right direction
+skinparam ClassAttributeIconSize 0
+
+enum Direction <<enumeration>>
+
+class GameLogicModel{
+-started : **bool** 
+-paused : **bool**
+-gameTimer : **QTimer**
+-gameTime : **QTime**
+-playerCoords : **QPoint**
+-playerDirection  : **Direction**  
+----
++GameLogicModel(parent : **QObject***, map : **Map***, player : **Player***)
++~GameLogicModel()
++pause() : **void**
+-placePlayer(newPos : **QPoint**, oldPos : **QPoint**) : **void**
+-connectBlockEvents() : **void**
+-endGame() : **void**
+--<<getter>>--
++getPlayer() : **Player** {query}
++getActiveMap() : **Map** {query}
++getPlayerCoords() : **QPoint** {query}
++getPlayerDirection() : **Direction** {query}
+--<<signals>>--
++timeTicked(time : **QTime**) : **void**
++gameEnded(player : **Player&**, time : **QTime**) : **void**
+--<<slots>>--
++startgame() : **void**
++movePlayer(direction : **Direction**) : **void**
+-onPlayerEntered() : **void**
+-onPlayerExited() : **void**
+  
+}
+
+QObject <|-right- GameLogicModel
+
+GameLogicModel *-- "1  " LightFiller : lightFiller
+GameLogicModel *-- "1" Map : activeMap
+GameLogicModel *-- "1  " Player : player
+Map -r- Direction
+GameLogicModel ..> Direction
+
+
+@enduml

@@ -45,7 +45,7 @@ private:
     QTime  gameTime;
 
     //Map
-    Map* activeMap; // MIGHT NEED POINTER
+    Map* activeMap;
     LightFiller lightFiller;
 
     //Player

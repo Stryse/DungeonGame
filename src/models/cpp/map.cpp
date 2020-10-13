@@ -3,9 +3,6 @@
 #include <QTextStream>
 
 
-Map::Map()
-{}
-
 Map::Map(const QString& mapName,
          const QVector<QVector<AbstractGameBlock*>>& dataGrid,
          const QPoint& initCoords,int direction)

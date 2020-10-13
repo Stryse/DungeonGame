@@ -1,0 +1,36 @@
+# GameLoaderModel
+
+@startuml
+left to right direction
+skinparam ClassAttributeIconSize 0
+
+class GameLoaderModel{
+-playerDataAccess : //**IPlayerDataAccess***//
+-players : **QVector<Player*>**
+-activePlayerInd : **int**
+-mapDataAccess : //**IMapDataAccess***//
+-maps : **QVector<Map*>**
+-activeMapInd : **int**
+----
++nextPlayer() : **void**
++prevPlayer() : **void**
++createGame(parent : **QObject***) : **GameLogicModel*** 
+-- <<getter>> --
++getActivePlayer() : **Player**
++getMaps() : **Map** : **QVector<Map*>&**
+-- <<setter>>--
++setActiveMap(ind : **int**) : **void** 
+}
+
+GameLoaderModel -left-|> QObject
+interface IPlayerDataAccess <<interface>>
+interface IMapDataAccess <<interface>>
+
+GameLoaderModel <-- PlayerDataAccessImpl : <<injected>>
+IPlayerDataAccess <|-right- PlayerDataAccessImpl : <<implements>>
+
+GameLoaderModel <-- MapDataAccessImpl : <<injected>>
+IMapDataAccess <|-right- MapDataAccessImpl : <<implements>>
+
+GameLoaderModel --> GameLogicModel : <<creates>>
+@enduml

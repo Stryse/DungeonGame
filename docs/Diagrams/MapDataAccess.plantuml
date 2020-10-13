@@ -1,0 +1,20 @@
+# MapDataAccessImpl
+
+@startuml
+
+skinparam classAttributeIconSize 0
+
+interface IMapDataAccess{
++{abstract} isAvailable() : **bool**
++{abstract} loadMaps(target : **QVector<Map*>&**) : **bool**
+}
+
+class MapDataAccessImpl{
++{abstract} isAvailable() : **bool** <<override>>
++{abstract} loadMaps(target : **QVector<Map*>&**) : **bool** <<override>>
+-loadMapsFromDirectory(target : **QVector<Map*>&**, dirPath : **QString&**) : **bool**
+-loadMapFromFile(filePath : **QString&**) : **Map***
+}
+
+IMapDataAccess <|-- MapDataAccessImpl
+@enduml

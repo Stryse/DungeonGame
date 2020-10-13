@@ -1,0 +1,39 @@
+# GameLoaderModel
+
+@startuml
+left to right direction
+skinparam ClassAttributeIconSize 0
+
+class CharacterCreationModel{
+-maxSkillPoints : **int**
+-playerName : **QString**
+-playerPortraitPath : **QString**;
+-playerStrength : **int**;
+-playerIntellect : **int**;
+-playerStamina : **int**;
+-playerDataAccess : **IPlayerDataAccess***
+----
+makePlayer() : **Player***
+-- <<getter>> --
+getPlayerName() : **QString**
+getPlayerStrength() : **int**
+getPlayerIntellect() : **int**
+getPlayerStamina() : **int**
+getMaxSkillPoints() : **int**
+-- <<setter>> --
+setPlayerName(const QString& value) : **void**
+setPlayerPortraitPath(const QString& value) : **void**
+addPointStrength(int value) : **int**
+addPointIntellect(int value) : **int**
+addPointStamina(int value) : **int**
+getPlayerDataAccess() : **IPlayerDataAccess***
+}
+
+CharacterCreationModel -left-|> QObject
+interface IPlayerDataAccess <<interface>>
+
+CharacterCreationModel <-- PlayerDataAccessImpl : <<injected>>
+IPlayerDataAccess <|-right- PlayerDataAccessImpl : <<implements>>
+CharacterCreationModel --> Player : <<creates>>
+
+@enduml
