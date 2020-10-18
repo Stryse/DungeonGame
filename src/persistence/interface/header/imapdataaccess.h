@@ -2,7 +2,6 @@
 #define IMAPDATAACCESS_H
 
 #include <QVector>
-#include <QPixmap>
 #include "map.h"
 
 class IMapDataAccess

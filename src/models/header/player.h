@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include <QObject>
-#include <QPixmap>
 #include <QString>
 
 // TODO REMOVE QOBJECT

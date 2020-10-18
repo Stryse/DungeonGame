@@ -2,7 +2,6 @@
 #define PLAYERDATAACCESS_H
 
 #include <QVector>
-#include <QPixmap>
 #include <QStringList>
 #include "player.h"
 

@@ -1,0 +1,7 @@
+﻿Lusta pálya
+0 2
+1
+3
+R R E
+R W W
+S R R

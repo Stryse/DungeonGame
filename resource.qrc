@@ -24,5 +24,6 @@
         <file>resources/maps/Map_02.txt</file>
         <file>resources/img/backgrounds/victory_creen.png</file>
         <file>resources/img/player/squidward.png</file>
+        <file>resources/maps/Map_03.txt</file>
     </qresource>
 </RCC>
